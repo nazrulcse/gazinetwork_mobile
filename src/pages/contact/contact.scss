@@ -1,0 +1,57 @@
+page-contact {
+.contact-form-wrapper {
+    padding: 7px;
+    .input-field {
+      position: relative;
+      ion-input, 
+      ion-select,
+      ion-textarea {
+        margin-bottom: 20px;
+        position: relative;
+        padding-left: 0;
+        padding-right: 0;
+        max-width: 100%;
+        .item-cover {
+          	padding-left: 0 !important;
+          	padding-right: 0 !important;
+          }
+          .select-icon {
+          	right: 10px;
+          }
+          .select-text {
+          	padding-left: 10px;
+          }
+        input, select, .button-inner,
+        textarea {
+          border: solid 1px #cccccc;
+          border-radius: 4px;
+          width: 100%;
+          margin: 0;
+          padding: 10px 5px 10px 10px;
+          color: #333333;
+          font-size: 14px;
+          &:focus {
+            border-color: #007fba;
+          }
+        }
+    }
+    label {
+    	width: 100%;
+    	display: block;
+    	margin-bottom: 5px;
+    	font-weight: bold;
+    	font-size: 14px;
+    }
+    .icon-set {
+        position: absolute;
+        top: 10px;
+        left: 10px;
+        font-size: 20px;
+        color: #cccccc;
+      }
+    }
+    ion-list {
+      margin-bottom: 5px;
+    }
+  }
+}

@@ -1,0 +1,35 @@
+page-invoice {
+.user-profile-icon {
+    img {
+    	width: 90px;
+    	margin: auto;
+    }
+  }
+  .invoice-details {
+  	margin: auto;
+  		ul {
+        margin: 0;
+          padding: 0;
+  			li {
+  				list-style: none;
+  				padding: 5px 0 5px 30px;
+          position: relative;
+          .title {
+            font-size: 12px;
+            margin-bottom: 5px;
+            color: #007fba;
+          }
+  			}
+  		}
+  		.icon-set {
+        position: absolute;
+        top: 35%;
+        left: 0;
+        color: #007fba;
+  		}
+  }
+  .user-name {
+  		text-align: center;
+  		margin: 5px 0;
+  	}
+}

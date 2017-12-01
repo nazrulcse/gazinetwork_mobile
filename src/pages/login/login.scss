@@ -1,0 +1,69 @@
+page-login {
+  .login-content {
+    background: #ffffff;
+    ion-item {
+      background: transparent; 
+    } 
+    input[type='email'],
+    input[type='password'],
+    input[type='text'] {
+      color: #ffffff;
+    }
+  } 
+
+  .login-form-wrapper {
+    padding: 15px;
+    .input-field {
+      position: relative;
+      ion-input {
+        margin-bottom: 20px;
+        input {
+          border: solid 1px #cccccc;
+          border-radius: 4px;
+          width: 100%;
+          margin: 0;
+          padding: 10px 5px 10px 35px;
+          color: #333333;
+          font-size: 14px;
+          &:focus {
+            border-color: #007fba;
+          }
+        }
+    }
+    .icon-set {
+        position: absolute;
+        top: 10px;
+        left: 10px;
+        font-size: 20px;
+        color: #cccccc;
+      }
+    }
+    ion-list {
+      margin-bottom: 5px;
+    }
+  }
+  .user-login-icon {
+     text-align: center;
+     position: relative;
+     &:before {
+        position: absolute;
+        top: 50%;
+        left: 0;
+        right: 0;
+        border: solid 2px #fbfbfb;
+        content: '';
+     }
+     img {
+        width: 130px;
+        margin: auto;
+        z-index: 1;
+        padding: 0 15px;
+        background: #ffffff;
+     }
+  }
+  .signin-text {
+    text-align: center;
+    margin: 2px 0;
+    color: #777777;
+  }
+}

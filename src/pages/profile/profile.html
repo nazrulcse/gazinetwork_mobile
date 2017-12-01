@@ -1,0 +1,77 @@
+<ion-header>
+  <ion-navbar>
+  	<button ion-button menuToggle>
+      <ion-icon name="menu"></ion-icon>
+    </button>
+    <ion-title>
+     <ion-icon ios="ios-person" md="md-person"></ion-icon> 
+     {{profile.name}}
+    </ion-title>
+  </ion-navbar>
+</ion-header>
+<div *ngIf="error" class="alert alert-danger">{{error}}</div>
+<ion-content padding class='user-profile-container'>
+  <ion-row class='user-profile-icon'>
+    <img src='assets/imgs/login_user.png'/>
+  </ion-row>
+  <div class="customer-actions">
+    <button ion-button color="secondary" outline (click)="openContact()"> Contact </button>
+    <button ion-button color="danger" outline class='pull-right' (click)="openComplain()"> Complain </button>
+  </div>
+  <div class='devider'></div>
+  <div class="profile-details">
+  	<ul>
+  		<li>
+  			<ion-icon class='icon-set' ios="ios-locate-outline" md="md-locate"></ion-icon> 
+        <div class='title'>Address</div>
+        {{profile.address}}
+  		</li>
+  		<li>
+  			<ion-icon class='icon-set' ios="ios-call-outline" md="md-call"></ion-icon> 
+         <div class='title'>Mobile</div>
+         {{profile.phone}}
+  		</li>
+  		<li>
+  			<ion-icon class='icon-set' ios="ios-calendar-outline" md="md-calendar"></ion-icon> 
+        <div class='title'>Connection Date</div>
+        12/10/2016
+  		</li>
+  	</ul>
+    <div class='devider'></div>
+    <ul>
+      <li>
+        <ion-icon class='icon-set' ios="ios-cash-outline" md="md-cash"></ion-icon> 
+        <div class='title'>Line Charge</div>
+        550 Tk
+      </li>
+      <li>
+        <ion-icon class='icon-set' ios="ios-desktop-outline" md="md-desktop"></ion-icon>
+        <div class='title'>Number Of TV</div>
+        1
+      </li>
+      <li>
+        <ion-icon class='icon-set' ios="ios-stats-outline" md="md-stats"></ion-icon> 
+        <div class='title'>Last Month Bill Status</div>
+        <span style='color: blue'> Paid </span>
+      </li>
+    </ul>
+    <div class='devider'></div>
+    <h4> Last 5 Billing History </h4>
+    <table class='table'>
+      <thead>
+        <tr>
+          <th>Date</th>
+          <th>Month</th>
+          <th>Amount</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>04/02/2017</td>
+          <td>June</td>
+          <td>250</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</ion-content>

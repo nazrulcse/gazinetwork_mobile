@@ -1,0 +1,38 @@
+<ion-header>
+  <ion-navbar>
+    <button ion-button menuToggle>
+      <ion-icon name="menu"></ion-icon>
+    </button>
+    <ion-title>Gazinetworks: Due Bills</ion-title>
+  </ion-navbar>
+</ion-header>
+
+<ion-content>
+<ion-searchbar (ionInput)="searchInvoice($event)"></ion-searchbar>
+  	<ion-list>
+	  <div class='invoice-lists'>
+	    <table class='table'>
+	    	<thead>
+	    		<tr>
+	    			<th>Name</th>
+	    			<th>Address</th>
+	    			<th>Phone</th>
+	    			<th>Due</th>
+	    			<th></th>
+	    		</tr>
+	    	</thead>
+	    	<tbody>
+	    		<tr *ngFor="let invoice of invoices">
+	    			<td>{{invoice.name}}</td>
+	    			<td>{{invoice.address}}</td>
+	    			<td>{{invoice.mobile}}</td>
+	    			<td>{{invoice.amount}}</td>
+	    			<td>
+	    				<button ion-button outline small (click)=getInvoice(invoice.id)> Collect Bill </button>
+	    			</td>
+	    		</tr>
+	    	</tbody>
+	    </table>
+	  </div>
+	</ion-list>
+</ion-content>

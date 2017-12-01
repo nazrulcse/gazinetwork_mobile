@@ -1,0 +1,48 @@
+<ion-header>
+
+  <ion-navbar>
+    <ion-title> Customer Billing </ion-title>
+  </ion-navbar>
+
+</ion-header>
+
+<ion-content padding class='user-profile-container'>
+  <ion-row class='user-profile-icon'>
+    <img src='assets/imgs/login_user.png'/>
+  </ion-row>
+  <h4 class='user-name'> {{invoice.name}} </h4>
+  <div class='devider'></div>
+  <div class="invoice-details">
+  	<ul>
+  		<li>
+  			<ion-icon class='icon-set' ios="ios-locate-outline" md="md-locate"></ion-icon> 
+        <div class='title'>Address</div>
+        Road #3, House #262, Mirpur-12, DOHS, Dhaka
+  		</li>
+  		<li>
+  			<ion-icon class='icon-set' ios="ios-call-outline" md="md-call"></ion-icon> 
+         <div class='title'>Mobile</div>
+         +8801722647240
+  		</li>
+  	</ul>
+    <div class='devider'></div>
+    <ul>
+    	<li>
+  			<ion-icon class='icon-set' ios="ios-calendar-outline" md="md-calendar"></ion-icon> 
+            <div class='title'>Billing Month</div>
+            {{invoice.month}}
+  		</li>
+      <li>
+        <ion-icon class='icon-set' ios="ios-cash-outline" md="md-cash"></ion-icon> 
+        <div class='title'>Bill Amount</div>
+        {{invoice.amount}} Tk
+      </li>
+      <li class='text-center'>
+        <button ion-button outline (click)=makePayment(invoice.id) #payment_btn *ngIf="!bill_paid"> Bill Collected </button>
+        <div class='alert alert-success' *ngIf="bill_paid">
+        	Bill Paid Successfully
+        </div>
+      </li>
+    </ul>
+  </div>
+</ion-content>
