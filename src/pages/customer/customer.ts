@@ -16,9 +16,18 @@ import {InvoicePage} from '../../pages/invoice/invoice';
   templateUrl: 'customer.html',
 })
 export class CustomerPage {
-  customer: Object;
+  customer = {};
+  error: any;
   constructor(public navCtrl: NavController, public navParams: NavParams, private customerService: CustomerProvider) {
-  	this.customer = customerService.getCustomer(1);
+  	let cus_id = this.navParams.get('id');
+    customerService.getCustomer(cus_id).subscribe(
+      data => {
+        this.customer = data;
+      }, 
+      err => {
+        this.error = err;
+      }
+    );
   }
 
   ionViewDidLoad() {

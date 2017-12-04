@@ -22,7 +22,7 @@ import {NavbarComponent} from '../../components/navbar/navbar';
 export class LoginPage {
   registerCredentials = { email: '', password: '', remember: false };
   // LOGIN_URL = 'http://gazinetwork.one/api/v1/login'
-  LOGIN_URL = 'http://b900ee0b.ngrok.io/api/v1/login'
+  LOGIN_URL = 'http://9ccdb0a5.ngrok.io/api/v1/login'
   contentHeader = new Headers({"Content-Type": "application/json"});
   @ViewChild('email') email: any;
   error: string;

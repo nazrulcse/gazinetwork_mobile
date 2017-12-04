@@ -25,6 +25,7 @@ import {IonicStorageModule} from '@ionic/storage';
 import {NavbarComponent} from '../components/navbar/navbar';
 import { CustomerProvider } from '../providers/customer/customer';
 import { InvoiceProvider } from '../providers/invoice/invoice';
+import { PaymentProvider } from '../providers/payment/payment';
 
 @NgModule({
   declarations: [
@@ -74,7 +75,8 @@ import { InvoiceProvider } from '../providers/invoice/invoice';
     NavbarComponent,
     CustomerProvider,
     HttpClient,
-    InvoiceProvider
+    InvoiceProvider,
+    PaymentProvider
   ]
 })
 export class AppModule {}

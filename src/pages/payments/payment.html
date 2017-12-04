@@ -3,7 +3,9 @@
     <button ion-button menuToggle>
       <ion-icon name="menu"></ion-icon>
     </button>
-    <ion-title>Md Nazrul Islam: Payment History</ion-title>
+    <ion-title>
+     Payments History
+    </ion-title>
   </ion-navbar>
 </ion-header>
 
@@ -12,36 +14,19 @@
   <table class='table'>
       <thead>
         <tr>
+          <th>Customer ID</th>
+          <th>Name</th>
           <th>Date</th>
           <th>Month</th>
           <th>Amount</th>
         </tr>
       </thead>
       <tbody>
-        <tr>
-          <td>04/02/2017</td>
-          <td>June</td>
-          <td>250</td>
-        </tr>
-        <tr>
-          <td>04/03/2017</td>
-          <td>July</td>
-          <td>250</td>
-        </tr>
-        <tr>
-          <td>15/04/2017</td>
-          <td>August</td>
-          <td>250</td>
-        </tr>
-        <tr>
-          <td>12/05/2017</td>
-          <td>September</td>
-          <td>250</td>
-        </tr>
-        <tr>
-          <td>10/06/2017</td>
-          <td>October</td>
-          <td>250</td>
+        <tr *ngFor="let payment of payments">
+          <td>{{invoice.customer_id}}</td>
+          <td>{{invoice.name}}</td>
+          <td>{{invoice.month}}</td>
+          <td>{{invoice.amount}}</td>
         </tr>
       </tbody>
   </table>

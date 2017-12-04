@@ -17,6 +17,9 @@
 	    			<th>Name</th>
 	    			<th>Address</th>
 	    			<th>Phone</th>
+	    			<th>Month</th>
+	    			<th>Amount</th>
+	    			<th>Paid</th>
 	    			<th>Due</th>
 	    			<th></th>
 	    		</tr>
@@ -26,7 +29,10 @@
 	    			<td>{{invoice.name}}</td>
 	    			<td>{{invoice.address}}</td>
 	    			<td>{{invoice.mobile}}</td>
+	    			<td>{{invoice.month}}</td>
 	    			<td>{{invoice.amount}}</td>
+	    			<td>{{invoice.paid}}</td>
+	    			<td>{{invoice.amount - invoice.paid}}</td>
 	    			<td>
 	    				<button ion-button outline small (click)=getInvoice(invoice.id)> Collect Bill </button>
 	    			</td>

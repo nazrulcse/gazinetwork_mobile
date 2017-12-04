@@ -16,11 +16,19 @@ import {CustomerPage} from '../../pages/customer/customer';
   templateUrl: 'customers.html',
 })
 export class CustomersPage {
-  customers: any;
-  filter_customers: any;
+  customers = [];
+  filter_customers = [];
+  error: any;
   constructor(public navCtrl: NavController, public navParams: NavParams, customerService: CustomerProvider) {
-  	this.customers = customerService.all();
-    this.filter_customers = this.customers;
+  	customerService.all().subscribe(
+        data => {
+          this.customers = data;
+          this.filter_customers = data;
+        },
+        err =>  { 
+          this.error = err;
+        }
+      );
   }
 
   ionViewDidLoad() {

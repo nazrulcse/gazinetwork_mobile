@@ -11,17 +11,18 @@
     <img src='assets/imgs/login_user.png'/>
   </ion-row>
   <div class='devider'></div>
+  <div *ngIf='error' class='alert alert-danger'>{{error}}</div>
   <div class="profile-details">
   	<ul>
   		<li>
   			<ion-icon class='icon-set' ios="ios-locate-outline" md="md-locate"></ion-icon> 
         <div class='title'>Address</div>
-        Road #3, House #262, Mirpur-12, DOHS, Dhaka
+        {{customer.address}}
   		</li>
   		<li>
   			<ion-icon class='icon-set' ios="ios-call-outline" md="md-call"></ion-icon> 
          <div class='title'>Mobile</div>
-         +8801722647240
+         {{customer.mobile}}
   		</li>
   		<li>
   			<ion-icon class='icon-set' ios="ios-calendar-outline" md="md-calendar"></ion-icon> 
@@ -34,12 +35,12 @@
       <li>
         <ion-icon class='icon-set' ios="ios-cash-outline" md="md-cash"></ion-icon> 
         <div class='title'>Line Charge</div>
-        550 Tk
+        {{customer.line_charge}} Tk
       </li>
       <li>
         <ion-icon class='icon-set' ios="ios-desktop-outline" md="md-desktop"></ion-icon>
         <div class='title'>Number Of TV</div>
-        1
+        {{customer.tv}}
       </li>
       <li>
         <ion-icon class='icon-set' ios="ios-stats-outline" md="md-stats"></ion-icon> 
@@ -54,22 +55,20 @@
         <tr>
           <th>Month</th>
           <th>Amount</th>
+          <th>Paid</th>
+          <th>Due</th>
           <th>Status</th>
         </tr>
       </thead>
       <tbody>
-      	<tr>
-          <td>July</td>
-          <td>250</td>
+      	<tr *ngFor="let invoice of customer.invoices">
+          <td>{{invoice.month}}</td>
+          <td>{{invoice.amount}}</td>
+          <td>{{invoice.paid}}</td>
+          <td>{{invoice.paid - invoice.paid}}</td>
           <td>
-           <button ion-button outline small (click)=collectPayment(customer.id)> Collect Bill </button>
-          </td>
-        </tr>
-        <tr>
-          <td>June</td>
-          <td>250</td>
-          <td>
-           <ion-badge item-end>260k</ion-badge>
+            <span *ngIf="invoice.status"> {{invoice.status}} </span>
+            <button *ngIf="!invoice.status" ion-button outline small (click)=collectPayment(invoice.id)> Collect Bill  </button>
           </td>
         </tr>
       </tbody>

@@ -18,9 +18,17 @@ import {InvoicePage} from '../../pages/invoice/invoice';
 export class InvoicesPage {
   invoices: Array<any>;
   filter_invoices: Array<any>;
+  error: any;
   constructor(public navCtrl: NavController, public navParams: NavParams, private invoiceService: InvoiceProvider) {
-  	this.invoices = invoiceService.all();
-    this.filter_invoices = this.invoices;
+  	invoiceService.all().subscribe(
+        data => {
+          this.invoices = data;
+          this.filter_invoices = data;
+        },
+        err =>  { 
+          this.error = err;
+        }
+      );
   }
 
   ionViewDidLoad() {

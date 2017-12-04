@@ -1,5 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import {Headers, Http} from "@angular/http";
 
 /*
   Generated class for the InvoiceProvider provider.
@@ -10,26 +11,18 @@ import { Injectable } from '@angular/core';
 @Injectable()
 export class InvoiceProvider {
 
-  INVOICES = [
-    {id: 1, name: 'Md Nazrul Islam', mobile: '01722647240', address: '', amount: '250', month: 'April'},
-    {id: 2, name: 'Mr. Xyz', mobile: '01722636524', address: '', amount: '350', month: 'May'},
-    {id: 3, name: 'Miss Abc', mobile: '01722625424', address: '', amount: '300', month: 'June'}
-  ]
-  // constructor(public http: HttpClient) {
-  constructor() {
+  INVOICE_URL = 'http://9ccdb0a5.ngrok.io/api/v1';
+  constructor(private http: Http) {
     console.log('Hello InvoiceProvider Provider');
   }
 
   all() {
-    return this.INVOICES;
+    return this.http.get(this.INVOICE_URL + '/invoices')
+      .map(res => res.json().response);
   }
 
   getInvoice(id) {
-    for(let i = 0; i < this.INVOICES.length; i++) {
-    	if(this.INVOICES[i].id == id) {
-          return this.INVOICES[i]
-    	}
-    }
-    return {error: 'No customer found'};
+    return this.http.get(this.INVOICE_URL + '/invoices/' + id)
+      .map(res => res.json().response);
   }
 }

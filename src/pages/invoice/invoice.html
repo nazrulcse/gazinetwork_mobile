@@ -17,12 +17,12 @@
   		<li>
   			<ion-icon class='icon-set' ios="ios-locate-outline" md="md-locate"></ion-icon> 
         <div class='title'>Address</div>
-        Road #3, House #262, Mirpur-12, DOHS, Dhaka
+        {{invoice.address}}
   		</li>
   		<li>
   			<ion-icon class='icon-set' ios="ios-call-outline" md="md-call"></ion-icon> 
          <div class='title'>Mobile</div>
-         +8801722647240
+         {{invoice.mobile}}
   		</li>
   	</ul>
     <div class='devider'></div>
@@ -37,11 +37,39 @@
         <div class='title'>Bill Amount</div>
         {{invoice.amount}} Tk
       </li>
-      <li class='text-center'>
-        <button ion-button outline (click)=makePayment(invoice.id) #payment_btn *ngIf="!bill_paid"> Bill Collected </button>
+      <li>
+        <ion-icon class='icon-set' ios="ios-cash-outline" md="md-cash"></ion-icon> 
+        <div class='title'>Paid Amount</div>
+        {{invoice.paid}} Tk
+      </li>
+      <li class='devider'></li>
+      <li class='payment-wrapper'>
         <div class='alert alert-success' *ngIf="bill_paid">
         	Bill Paid Successfully
         </div>
+        <form #loginForm="ngForm" (ngSubmit)="makePayment(invoice.invoice_id)" autocomplete="off">
+          <ion-row>
+            <ion-col>
+                <div class='input-field'>
+                  <input placeholder="Payment amount" name="payment" id="paymentField" class='common-input'
+                             type="number" required [(ngModel)]="payment.amount" #paymentField [disabled]="payment.full_paid">
+                </div>
+                <div class='fullpaid-field'>
+                  <input type='checkbox' id='fullpaid' name='fullpaid' value='true' (change)='markFullPaid($event)' 
+                  [(ngModel)]="payment.full_paid">
+                  <label for='fullpaid'> Full Paid </label>
+                </div>
+            </ion-col>
+          </ion-row>
+          <ion-row>
+            <ion-col>
+              <div *ngIf="error" class="alert alert-danger">{{error}}</div>
+              <button ion-button class="submit-btn" full type="submit"
+                      [disabled]="!loginForm.form.valid && !bill_paid">Bill Collected
+              </button>
+            </ion-col>
+          </ion-row>
+        </form>
       </li>
     </ul>
   </div>

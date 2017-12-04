@@ -22,15 +22,22 @@ import {Storage} from "@ionic/storage";
 })
 export class ProfilePage {
   profile: any;
-  PROFILE_URL = 'http://b900ee0b.ngrok.io/api/v1/profile'
+  PROFILE_URL = 'http://9ccdb0a5.ngrok.io/api/v1/profile'
   error: any;
   loader: any;
+  customer_invoices = [];
+  is_customer = false;
 
   constructor(public navCtrl: NavController, public navParams: NavParams, private navbar: NavbarComponent, private http: Http, private storage: Storage, private loading: LoadingController) {
     this.profile = {name: 'Md Nazrul Islam'};
     this.loader = this.loading.create({
       content: "Loading..."
     }); 
+    this.storage.get('auth').then((auth) => {
+      if(auth) {
+        this.is_customer = (auth.type == 'customer')
+      }
+    });
     this.loader.present();
     this.storage.get('auth').then((auth) => {
       if(auth) {
@@ -53,7 +60,7 @@ export class ProfilePage {
       .subscribe(
         data => {
           this.profile = data.success;
-          console.log(data.success);
+          this.customer_invoices = data.invoices;
           this.loader.dismiss();
         },
         err =>  { 

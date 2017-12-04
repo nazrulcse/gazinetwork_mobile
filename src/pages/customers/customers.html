@@ -9,6 +9,7 @@
 
 <ion-content>
 <ion-searchbar (ionInput)="searchCustomer($event)"></ion-searchbar>
+    <div *ngIf='error' class='alert alert-danger'> {{error}}</div>
   	<ion-list>
 	  <div class='customer-lists'>
 	    <table class='table'>
@@ -28,7 +29,7 @@
 	    			<td>{{customer.address}}</td>
 	    			<td>{{customer.mobile}}</td>
 	    			<td>{{customer.tv}}</td>
-	    			<td>{{customer.payment_due}}</td>
+	    			<td>{{customer.due}}</td>
 	    			<td>
 	    				<button ion-button outline small (click)=getcustomer(customer.id)> Details </button>
 	    			</td>

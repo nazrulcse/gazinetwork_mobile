@@ -1,5 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import {Headers, Http} from "@angular/http";
 
 /*
   Generated class for the CustomerProvider provider.
@@ -14,22 +15,19 @@ export class CustomerProvider {
     {id: 2, name: 'Mr. Xyz', mobile: '01722636524', address: '', tv: '2', payment_due: '350'},
     {id: 3, name: 'Miss Abc', mobile: '01722625424', address: '', tv: '2', payment_due: '300'}
   ]
-  // constructor(public http: HttpClient) {
-  constructor() {
+  CUSTOMER_URL = 'http://9ccdb0a5.ngrok.io/api/v1';
+  constructor(private http: Http) {
     console.log('Hello CustomerProvider Provider');
   }
 
   all() {
-    return this.CUSTOMERS;
+   return this.http.get(this.CUSTOMER_URL + '/customers')
+      .map(res => res.json().response);
   }
 
   getCustomer(id) {
-    for(let i = 0; i < this.CUSTOMERS.length; i++) {
-    	if(this.CUSTOMERS[i].id == id) {
-          return this.CUSTOMERS[i]
-    	}
-    }
-    return {error: 'No customer found'};
+    return this.http.get(this.CUSTOMER_URL + '/customers/' + id)
+      .map(res => res.json().response);
   }
 
 }

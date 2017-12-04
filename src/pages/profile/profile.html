@@ -14,7 +14,7 @@
   <ion-row class='user-profile-icon'>
     <img src='assets/imgs/login_user.png'/>
   </ion-row>
-  <div class="customer-actions">
+  <div class="customer-actions" *ngIf="is_customer">
     <button ion-button color="secondary" outline (click)="openContact()"> Contact </button>
     <button ion-button color="danger" outline class='pull-right' (click)="openComplain()"> Complain </button>
   </div>
@@ -42,12 +42,12 @@
       <li>
         <ion-icon class='icon-set' ios="ios-cash-outline" md="md-cash"></ion-icon> 
         <div class='title'>Line Charge</div>
-        550 Tk
+        {{profile.customer_monthly_bill}} Tk
       </li>
       <li>
         <ion-icon class='icon-set' ios="ios-desktop-outline" md="md-desktop"></ion-icon>
         <div class='title'>Number Of TV</div>
-        1
+        {{profile.customer_tv_count}}
       </li>
       <li>
         <ion-icon class='icon-set' ios="ios-stats-outline" md="md-stats"></ion-icon> 
@@ -56,22 +56,26 @@
       </li>
     </ul>
     <div class='devider'></div>
-    <h4> Last 5 Billing History </h4>
-    <table class='table'>
-      <thead>
-        <tr>
-          <th>Date</th>
-          <th>Month</th>
-          <th>Amount</th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr>
-          <td>04/02/2017</td>
-          <td>June</td>
-          <td>250</td>
-        </tr>
-      </tbody>
-    </table>
+    <div *ngIf="customer_invoices.length > 0">
+      <h4> Customer Billing History </h4>
+      <table class='table'>
+        <thead>
+          <tr>
+            <th>Month</th>
+            <th>Amount</th>
+            <th>Paid</th>
+            <th>Due</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let invoice of customer_invoices">
+            <td>{{invoice.month}}</td>
+            <td>{{invoice.amount}}</td>
+            <td>{{invoice.paid}}</td>
+            <td>{{invoice.amount - invoice.paid}}</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
   </div>
 </ion-content>

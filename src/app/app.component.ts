@@ -56,7 +56,7 @@ export class MyApp {
     this.storage.get('auth').then((auth) => {
       if(auth) {
         if(auth.type == 'customer') {
-          this.pages = this.pages.concat(this.customer_pages);
+          this.pages = this.pages.concat(this.agent_pages);
           this.rootPage = ProfilePage;
         }
         else {
