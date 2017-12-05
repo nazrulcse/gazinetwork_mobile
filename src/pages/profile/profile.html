@@ -49,10 +49,11 @@
         <div class='title'>Number Of TV</div>
         {{profile.customer_tv_count}}
       </li>
-      <li>
+      <li *ngIf="customer_invoices.length > 0">
         <ion-icon class='icon-set' ios="ios-stats-outline" md="md-stats"></ion-icon> 
         <div class='title'>Last Month Bill Status</div>
-        <span style='color: blue'> Paid </span>
+        <span style='color: blue' *ngIf="status"> Paid </span>
+        <span style='color: red' *ngIf="!status"> Not Paid </span>
       </li>
     </ul>
     <div class='devider'></div>
@@ -61,7 +62,7 @@
       <table class='table'>
         <thead>
           <tr>
-            <th>Month</th>
+            <th>Bill Period</th>
             <th>Amount</th>
             <th>Paid</th>
             <th>Due</th>

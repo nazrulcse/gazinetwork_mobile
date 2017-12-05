@@ -26,6 +26,7 @@ import {NavbarComponent} from '../components/navbar/navbar';
 import { CustomerProvider } from '../providers/customer/customer';
 import { InvoiceProvider } from '../providers/invoice/invoice';
 import { PaymentProvider } from '../providers/payment/payment';
+import { PaginationComponent } from 'ionic2-pagination';
 
 @NgModule({
   declarations: [
@@ -42,7 +43,8 @@ import { PaymentProvider } from '../providers/payment/payment';
     CustomersPage,
     CustomerPage,
     InvoicesPage,
-    InvoicePage
+    InvoicePage,
+    PaginationComponent
   ],
   imports: [
     BrowserModule,

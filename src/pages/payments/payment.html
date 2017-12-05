@@ -8,26 +8,36 @@
     </ion-title>
   </ion-navbar>
 </ion-header>
-
-<ion-content padding class='payment-history-wrapper'>
-  <h4>Payment History of last 5 month</h4>
+<div class='alert alert-danger' *ngIf="error">{{error}}</div>
+<ion-content class='payment-history-wrapper'>
+  <h4 class='text-center'>
+    Payment History of last 5 month
+  </h4>
   <table class='table'>
       <thead>
         <tr>
-          <th>Customer ID</th>
-          <th>Name</th>
+          <th *ngIf="is_customer">Customer ID</th>
+          <th *ngIf="is_customer">Name</th>
           <th>Date</th>
-          <th>Month</th>
+          <th>Bill Period</th>
           <th>Amount</th>
         </tr>
       </thead>
       <tbody>
         <tr *ngFor="let payment of payments">
-          <td>{{invoice.customer_id}}</td>
-          <td>{{invoice.name}}</td>
-          <td>{{invoice.month}}</td>
-          <td>{{invoice.amount}}</td>
+          <td *ngIf="is_customer">{{payment.customer_id}}</td>
+          <td *ngIf="is_customer">{{payment.name}}</td>
+          <td>{{payment.date}}</td>
+          <td>{{payment.month}}</td>
+          <td>{{payment.amount}}</td>
         </tr>
       </tbody>
   </table>
+  <!-- <ionc-pagination
+  color="light"
+  (clickBeginning)="changePage(1)"
+  (clickPrevious)="changePage(paginationInfo.page - 1)"
+  (clickNext)="changePage(paginationInfo.page + 1)"
+  (clickEnd)="changePage(paginationInfo.pageCount)"
+  [pagination]="paginationInfo"></ionc-pagination> -->
 </ion-content>

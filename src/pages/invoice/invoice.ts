@@ -1,5 +1,5 @@
 import { Component, ViewChild } from '@angular/core';
-import { IonicPage, NavController, NavParams, AlertController } from 'ionic-angular';
+import { IonicPage, NavController, NavParams, AlertController, LoadingController } from 'ionic-angular';
 import {InvoiceProvider} from '../../providers/invoice/invoice';
 import {InvoicesPage} from '../../pages/invoices/invoices';
 import {PaymentProvider} from '../../providers/payment/payment';
@@ -19,12 +19,13 @@ import {Storage} from "@ionic/storage";
 })
 
 export class InvoicePage {
-  invoice = {};
+  invoice = {due: 0};
   bill_paid = false;
   error: any;
   payment = {amount: 0, full_paid: false, invoice_id: 0, receiver_id: 0};
+  loader: any;
   @ViewChild('payment_btn') payment_btn: any;
-  constructor(public navCtrl: NavController, public navParams: NavParams, private storage: Storage, private invoiceService: InvoiceProvider, private alert: AlertController, private paymentService: PaymentProvider ) {
+  constructor(public navCtrl: NavController, public navParams: NavParams, private storage: Storage, private invoiceService: InvoiceProvider, private alert: AlertController, private paymentService: PaymentProvider, private loading: LoadingController ) {
   	let invoice_id = this.navParams.get('id');
     invoiceService.getInvoice(invoice_id).subscribe(
       data => {
@@ -48,6 +49,9 @@ export class InvoicePage {
 
   makePayment(id) {
      let navbar = this.navCtrl;
+     let ploader = this.loading.create({
+          content: "Creating Payment..."
+     });
      let confirm = this.alert.create({
       title: 'Customer Bill Payment?',
       message: 'Are you sure to make this bill payment?',
@@ -62,15 +66,17 @@ export class InvoicePage {
           text: 'Agree',
           handler: () => {
             this.payment.invoice_id = id;
-            console.log(this.payment);
+            ploader.present();
             this.paymentService.create(this.payment).subscribe(data => {
               this.bill_paid = true;
               setTimeout(function() {
                 navbar.setRoot(InvoicesPage);
+                ploader.dismiss();
               }, 5000);
             }, 
             err => {
               this.error = err;
+              ploader.dismiss();
             });
           }
         }

@@ -45,11 +45,12 @@
       <li>
         <ion-icon class='icon-set' ios="ios-stats-outline" md="md-stats"></ion-icon> 
         <div class='title'>Last Month Bill Status</div>
-        <span style='color: blue'> Paid </span>
+        <span style='color: blue' *ngIf="customer.last_bill"> Paid </span>
+        <span style='color: red' *ngIf="!customer.last_bill"> Not Paid </span>
       </li>
     </ul>
     <div class='devider'></div>
-    <h4> Last 5 Billing History </h4>
+    <h4> Customer Billing History </h4>
     <table class='table'>
       <thead>
         <tr>
@@ -65,7 +66,7 @@
           <td>{{invoice.month}}</td>
           <td>{{invoice.amount}}</td>
           <td>{{invoice.paid}}</td>
-          <td>{{invoice.paid - invoice.paid}}</td>
+          <td>{{invoice.amount - invoice.paid}}</td>
           <td>
             <span *ngIf="invoice.status"> {{invoice.status}} </span>
             <button *ngIf="!invoice.status" ion-button outline small (click)=collectPayment(invoice.id)> Collect Bill  </button>

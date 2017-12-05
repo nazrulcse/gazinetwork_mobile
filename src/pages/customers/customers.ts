@@ -20,13 +20,16 @@ export class CustomersPage {
   filter_customers = [];
   error: any;
   constructor(public navCtrl: NavController, public navParams: NavParams, customerService: CustomerProvider) {
+    customerService.loader.present();
   	customerService.all().subscribe(
         data => {
           this.customers = data;
           this.filter_customers = data;
+          customerService.loader.dismiss();
         },
         err =>  { 
           this.error = err;
+          customerService.loader.dismiss();
         }
       );
   }

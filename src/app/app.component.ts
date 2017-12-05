@@ -23,21 +23,21 @@ export class MyApp {
   @ViewChild(Nav) nav: Nav;
 
   rootPage:any = HomePage;
-  pages: Array<{title: string, component: any}>;
+  pages: Array<{title: string, component: any, icon: string}>;
   customer_pages = [
-    { title: 'Profile', component: ProfilePage },
-    { title: 'Payment', component: PaymentPage },
-    { title: 'Contact', component: ContactPage },
-    { title: 'Complain', component: ComplainPage },
+    { title: 'Profile', component: ProfilePage, icon: 'contact' },
+    { title: 'Payment', component: PaymentPage, icon: 'cash' },
+    { title: 'Contact', component: ContactPage, icon: 'call' },
+    { title: 'Complain', component: ComplainPage, icon: 'alert' },
   ]
   agent_pages = [
-    { title: 'Profile', component: ProfilePage },
-    { title: 'Customers', component: CustomersPage },
-    { title: 'Billings', component: InvoicesPage },
-    { title: 'Payment', component: PaymentPage },
+    { title: 'Profile', component: ProfilePage, icon: 'contact' },
+    { title: 'Customers', component: CustomersPage, icon: 'people' },
+    { title: 'Billings', component: InvoicesPage, icon: 'logo-usd' },
+    { title: 'Payment', component: PaymentPage, icon: 'cash' },
   ]
   loader: any;
-  
+  user = {name: 'Anonomys', id: 'Anonomys', type: ''};
   constructor(public platform: Platform, private loading: LoadingController, public statusBar: StatusBar, public splashScreen: SplashScreen, private storage: Storage) {
     this.loader = this.loading.create({
       content: "Loading..."
@@ -48,25 +48,28 @@ export class MyApp {
 
     // used for an example of ngFor and navigation
     this.pages = [
-      { title: 'Home', component: HomePage }
+      { title: 'Home', component: HomePage, icon: 'home' }
     ];
   }
 
   initializeApp() {
     this.storage.get('auth').then((auth) => {
       if(auth) {
+        this.user.name = auth.name;
+        this.user.id = auth.login_id;
+        this.user.type = auth.type;
         if(auth.type == 'customer') {
-          this.pages = this.pages.concat(this.agent_pages);
+          this.pages = this.pages.concat(this.customer_pages);
           this.rootPage = ProfilePage;
         }
         else {
-          this.pages = this.pages.concat(this.agent_pages);
+          this.pages = this.pages.concat(this.customer_pages);
           this.rootPage = CustomersPage;
         }
-        this.pages.push({ title: 'Logout', component: LogoutPage });
+        this.pages.push({ title: 'Logout', component: LogoutPage, icon: 'log-out' });
       }
       else {
-        this.pages.push({ title: 'Login', component: LoginPage });
+        this.pages.push({ title: 'Login', component: LoginPage, icon: 'log-in' });
         this.rootPage = LoginPage;
       }
     });

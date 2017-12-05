@@ -18,14 +18,21 @@ import {InvoicePage} from '../../pages/invoice/invoice';
 export class CustomerPage {
   customer = {};
   error: any;
+  loader: any;
   constructor(public navCtrl: NavController, public navParams: NavParams, private customerService: CustomerProvider) {
   	let cus_id = this.navParams.get('id');
+    this.loader = customerService.loading.create({
+      content: "Loading..."
+    });
+    this.loader.present();
     customerService.getCustomer(cus_id).subscribe(
       data => {
         this.customer = data;
+        this.loader.dismiss();
       }, 
       err => {
         this.error = err;
+        this.loader.dismiss();
       }
     );
   }

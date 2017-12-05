@@ -12,14 +12,14 @@ import {ProfilePage} from '../../pages/profile/profile';
 })
 export class ComplainPage {
   complain: any;
-  COMPLAIN_URL = 'http://b900ee0b.ngrok.io/api/v1/complain/store'
+  COMPLAIN_URL = 'http://1a88a2f8.ngrok.io/api/v1/complain/store'
   error: any;
   success: any;
   loader: any;
   constructor(public navCtrl: NavController, private http: Http, private storage: Storage, private loading: LoadingController) {
     this.complain = {subject: '', category: '', message: '', customer_id: ''}
     this.loader = this.loading.create({
-      content: "Loading..."
+      content: "Sending Complain..."
     }); 
   }
 

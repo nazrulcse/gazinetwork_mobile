@@ -22,7 +22,7 @@ import {Storage} from "@ionic/storage";
 })
 export class ProfilePage {
   profile: any;
-  PROFILE_URL = 'http://9ccdb0a5.ngrok.io/api/v1/profile'
+  PROFILE_URL = 'http://1a88a2f8.ngrok.io/api/v1/profile'
   error: any;
   loader: any;
   customer_invoices = [];

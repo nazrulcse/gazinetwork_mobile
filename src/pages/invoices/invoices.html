@@ -15,9 +15,9 @@
 	    	<thead>
 	    		<tr>
 	    			<th>Name</th>
-	    			<th>Address</th>
+	    			<!-- <th>Address</th> -->
 	    			<th>Phone</th>
-	    			<th>Month</th>
+	    			<th>Bill Period</th>
 	    			<th>Amount</th>
 	    			<th>Paid</th>
 	    			<th>Due</th>
@@ -27,14 +27,14 @@
 	    	<tbody>
 	    		<tr *ngFor="let invoice of invoices">
 	    			<td>{{invoice.name}}</td>
-	    			<td>{{invoice.address}}</td>
+	    			<!-- <td>{{invoice.address}}</td> -->
 	    			<td>{{invoice.mobile}}</td>
 	    			<td>{{invoice.month}}</td>
 	    			<td>{{invoice.amount}}</td>
 	    			<td>{{invoice.paid}}</td>
 	    			<td>{{invoice.amount - invoice.paid}}</td>
 	    			<td>
-	    				<button ion-button outline small (click)=getInvoice(invoice.id)> Collect Bill </button>
+	    				<button ion-button outline small (click)=getInvoice(invoice.id)> Collect </button>
 	    			</td>
 	    		</tr>
 	    	</tbody>

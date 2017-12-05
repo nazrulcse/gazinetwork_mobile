@@ -1,12 +1,7 @@
 <ion-menu [content]="content">
-  <!-- <ion-header>
-    <ion-toolbar>
-      <ion-title>Menu</ion-title>
-    </ion-toolbar>
-  </ion-header> -->
   <ion-content>
     <ion-list>
-      <div class="sidebar-header header-cover" style="background-image: url(https://2.bp.blogspot.com/-2RewSLZUzRg/U-9o6SD4M6I/AAAAAAAADIE/voax99AbRx0/s1600/14%2B-%2B1%2B%281%29.jpg);">
+      <div class="sidebar-header header-cover" style="background: url('assets/imgs/nav_bg.jpg') no-repeat; background-size: cover;">
         <!-- Top bar -->
         <div class="top-bar"></div>
         <!-- Sidebar toggle button -->
@@ -15,16 +10,16 @@
         </button>
         <!-- Sidebar brand image -->
         <div class="sidebar-image">
-            <img src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/53474/atom_profile_01.jpg">
+            <img src="assets/imgs/login_user.png">
         </div>
         <!-- Sidebar brand name -->
         <div class='navbar-user-info'>
-          <span> Md Nazrul Islam </span>
-          <span class='user_id'> ID: 325654 </span>
+          <span> {{user.name}} </span>
+          <span class='user_id'> ID: {{user.id}} </span>
         </div>
       </div>
       <button menuClose ion-item *ngFor="let p of pages" (click)="openPage(p)" class='navber-menu-item'>
-        <ion-icon name="analytics"></ion-icon>
+        <ion-icon name="{{p.icon}}"></ion-icon>
         {{p.title}}
       </button>
     </ion-list>
