@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams, LoadingController } from 'ionic-angular';
+import { IonicPage, NavController, NavParams, LoadingController, Events } from 'ionic-angular';
 import {LoginPage} from '../../pages/login/login';
 import {Storage} from "@ionic/storage";
 import {App} from 'ionic-angular';
@@ -18,17 +18,12 @@ import {App} from 'ionic-angular';
 })
 export class LogoutPage {
 
-  constructor(public nav: NavController, public navParams: NavParams, private loading: LoadingController, private storage: Storage, private app: App) {
+  constructor(public nav: NavController, public appCtrl: App, private loading: LoadingController, private storage: Storage, private events: Events) {
    
   }
 
   ionViewDidLoad() {
-    window.localStorage.clear();
-    this.storage.clear();
-    window.location.reload();
-    this.loading.create({
-      content: 'Loading...'
-    });
-    this.nav.setRoot(LoginPage);
+    this.storage.set('auth', false);
+    this.events.publish('auth:changed', false);
   }
 }

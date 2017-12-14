@@ -16,7 +16,7 @@ export class CustomerProvider {
     {id: 2, name: 'Mr. Xyz', mobile: '01722636524', address: '', tv: '2', payment_due: '350'},
     {id: 3, name: 'Miss Abc', mobile: '01722625424', address: '', tv: '2', payment_due: '300'}
   ]
-  CUSTOMER_URL = 'http://1a88a2f8.ngrok.io/api/v1';
+  CUSTOMER_URL = 'http://www.gazinetwork.one/api/v1';
   loader: any;
   constructor(private http: Http,  public loading: LoadingController) {
     this.loader = this.loading.create({

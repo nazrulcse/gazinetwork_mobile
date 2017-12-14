@@ -12,7 +12,7 @@ import {ProfilePage} from '../../pages/profile/profile';
 })
 export class ContactPage {
   contact: any;
-  CONTACT_URL = 'http://1a88a2f8.ngrok.io/api/v1/contacts/store'
+  CONTACT_URL = 'http://www.gazinetwork.one/api/v1/contacts/store'
   error: any;
   success: any;
   loader: any;

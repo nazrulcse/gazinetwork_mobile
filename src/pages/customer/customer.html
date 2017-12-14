@@ -68,7 +68,7 @@
           <td>{{invoice.paid}}</td>
           <td>{{invoice.amount - invoice.paid}}</td>
           <td>
-            <span *ngIf="invoice.status"> {{invoice.status}} </span>
+            <ion-badge *ngIf="invoice.status" item-end>Full Paid</ion-badge>
             <button *ngIf="!invoice.status" ion-button outline small (click)=collectPayment(invoice.id)> Collect Bill  </button>
           </td>
         </tr>

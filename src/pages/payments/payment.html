@@ -16,8 +16,8 @@
   <table class='table'>
       <thead>
         <tr>
-          <th *ngIf="is_customer">Customer ID</th>
-          <th *ngIf="is_customer">Name</th>
+          <!-- <th *ngIf="!is_customer">Customer ID</th> -->
+          <th *ngIf="!is_customer">Customer</th>
           <th>Date</th>
           <th>Bill Period</th>
           <th>Amount</th>
@@ -25,8 +25,8 @@
       </thead>
       <tbody>
         <tr *ngFor="let payment of payments">
-          <td *ngIf="is_customer">{{payment.customer_id}}</td>
-          <td *ngIf="is_customer">{{payment.name}}</td>
+          <!-- <td *ngIf="!is_customer">{{payment.customer_id}}</td> -->
+          <td *ngIf="!is_customer">{{payment.name}}</td>
           <td>{{payment.date}}</td>
           <td>{{payment.month}}</td>
           <td>{{payment.amount}}</td>

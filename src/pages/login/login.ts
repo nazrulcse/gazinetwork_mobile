@@ -1,5 +1,5 @@
 import { Component, ViewChild } from '@angular/core';
-import { IonicPage, NavController, NavParams, LoadingController } from 'ionic-angular';
+import { IonicPage, NavController, NavParams, LoadingController, Events } from 'ionic-angular';
 import { AuthServiceProvider } from '../../providers/auth-service/auth-service';
 import {Headers, Http} from "@angular/http";
 import {Storage} from "@ionic/storage";
@@ -22,14 +22,14 @@ import {NavbarComponent} from '../../components/navbar/navbar';
 export class LoginPage {
   registerCredentials = { customer_id: '', password: '', remember: false };
   // LOGIN_URL = 'http://gazinetwork.one/api/v1/login'
-  LOGIN_URL = 'http://1a88a2f8.ngrok.io/api/v1/login'
+  LOGIN_URL = 'http://www.gazinetwork.one/api/v1/login'
   contentHeader = new Headers({"Content-Type": "application/json"});
   @ViewChild('fcustomer_id') email: any;
   error: string;
   pages: Array<{title: string, component: any}>;
   loader: any;
 
-  constructor(public nav: NavController, private http: Http, private storage: Storage, private navbar: NavbarComponent, private loading: LoadingController) {
+  constructor(public nav: NavController, private events: Events, private http: Http, private storage: Storage, private navbar: NavbarComponent, private loading: LoadingController) {
     navbar.pages = [{ title: 'Profile', component: ProfilePage }];
   }
 
@@ -49,8 +49,9 @@ export class LoginPage {
       .map(res => res.json())
       .subscribe(
         data => {
+          this.loader.dismiss();
         	this.authSuccess(data.success);
-          window.location.reload();
+          this.events.publish('auth:changed', data.success); 
         },
         err =>  { 
         	this.error = err;

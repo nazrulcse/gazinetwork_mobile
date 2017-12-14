@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import { IonicPage, NavController, NavParams, LoadingController } from 'ionic-angular';
 import {CustomerProvider} from '../../providers/customer/customer';
 import {CustomerPage} from '../../pages/customer/customer';
 
@@ -19,17 +19,21 @@ export class CustomersPage {
   customers = [];
   filter_customers = [];
   error: any;
-  constructor(public navCtrl: NavController, public navParams: NavParams, customerService: CustomerProvider) {
-    customerService.loader.present();
+  loader: any;
+  constructor(public navCtrl: NavController, public loading: LoadingController, public navParams: NavParams, customerService: CustomerProvider) {
+    this.loader = loading.create({
+      content: 'Loaidng Customer...'
+    })
+    this.loader.present();
   	customerService.all().subscribe(
         data => {
           this.customers = data;
           this.filter_customers = data;
-          customerService.loader.dismiss();
+          this.loader.dismiss();
         },
         err =>  { 
           this.error = err;
-          customerService.loader.dismiss();
+          this.loader.dismiss();
         }
       );
   }
@@ -52,8 +56,10 @@ export class CustomersPage {
     if (value && value.trim() != '') {
       this.customers = this.customers.filter((item) => {
         let name = item.name.toLowerCase(); 
+        let mobile = item.mobile.toLowerCase();
+        let customer = item.customer_id.toLowerCase();
         let term = value.toLowerCase();
-        return (name.indexOf(term) > -1);
+        return (name.indexOf(term) > -1 || mobile.indexOf(term) > -1 || customer.indexOf(term) > -1);
       });
     }
   }

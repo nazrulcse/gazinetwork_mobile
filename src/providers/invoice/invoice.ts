@@ -11,7 +11,7 @@ import {Headers, Http} from "@angular/http";
 @Injectable()
 export class InvoiceProvider {
 
-  INVOICE_URL = 'http://1a88a2f8.ngrok.io/api/v1';
+  INVOICE_URL = 'http://www.gazinetwork.one/api/v1';
   constructor(private http: Http) {
     console.log('Hello InvoiceProvider Provider');
   }

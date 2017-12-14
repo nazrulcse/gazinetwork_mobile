@@ -1,7 +1,8 @@
 import { Component, ViewChild } from '@angular/core';
-import { Nav, Platform, LoadingController  } from 'ionic-angular';
+import { Nav, Platform, LoadingController, Events, ToastController  } from 'ionic-angular';
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
+import {Headers, Http} from "@angular/http";
 
 import { HomePage } from '../pages/home/home';
 import { ContactPage } from '../pages/contact/contact';
@@ -15,6 +16,7 @@ import {Storage} from "@ionic/storage";
 import {NavbarComponent} from '../components/navbar/navbar';
 import { CustomersPage } from '../pages/customers/customers';
 import { InvoicesPage } from '../pages/invoices/invoices';
+import { ExpensePage } from '../pages/expense/expense';
 
 @Component({
   templateUrl: 'app.html'
@@ -35,26 +37,40 @@ export class MyApp {
     { title: 'Customers', component: CustomersPage, icon: 'people' },
     { title: 'Billings', component: InvoicesPage, icon: 'logo-usd' },
     { title: 'Payment', component: PaymentPage, icon: 'cash' },
+    { title: 'Expense', component: ExpensePage, icon: 'pricetag' }
   ]
   loader: any;
   user = {name: 'Anonomys', id: 'Anonomys', type: ''};
-  constructor(public platform: Platform, private loading: LoadingController, public statusBar: StatusBar, public splashScreen: SplashScreen, private storage: Storage) {
+  announcements: Array<any>;
+  constructor(public platform: Platform, 
+    public events: Events, 
+    private loading: LoadingController,
+    public statusBar: StatusBar, 
+    public splashScreen: SplashScreen, 
+    private storage: Storage,
+    private http: Http,
+    private toastCtrl: ToastController) {
     this.loader = this.loading.create({
       content: "Loading..."
     });  
     this.loader.present();
-
-    this.initializeApp();
-
-    // used for an example of ngFor and navigation
     this.pages = [
       { title: 'Home', component: HomePage, icon: 'home' }
     ];
+    this.initializeApp();
+
+    this.events.subscribe('auth:changed', auth => {
+         this.updateMenu(auth);
+    });
+
+    this.loadAnnouncement();
   }
 
-  initializeApp() {
-    this.storage.get('auth').then((auth) => {
-      if(auth) {
+  updateMenu(auth) {
+    this.pages = [
+      { title: 'Home', component: HomePage, icon: 'home' }
+    ];
+    if(auth) {
         this.user.name = auth.name;
         this.user.id = auth.login_id;
         this.user.type = auth.type;
@@ -63,24 +79,45 @@ export class MyApp {
           this.rootPage = ProfilePage;
         }
         else {
-          this.pages = this.pages.concat(this.customer_pages);
+          this.pages = this.pages.concat(this.agent_pages);
           this.rootPage = CustomersPage;
         }
         this.pages.push({ title: 'Logout', component: LogoutPage, icon: 'log-out' });
       }
-      else {
+    else {
         this.pages.push({ title: 'Login', component: LoginPage, icon: 'log-in' });
+        this.user = {name: 'Anonomys', id: 'Anonomys', type: ''}
         this.rootPage = LoginPage;
       }
+  }
+
+  initializeApp() {
+    this.storage.get('auth').then((auth) => {
+      this.updateMenu(auth);
     });
 
     this.platform.ready().then(() => {
-      // Okay, so the platform is ready and our plugins are available.
-      // Here you can do any higher level native things you might need.
       this.statusBar.styleDefault();
       this.splashScreen.hide();
       this.loader.dismiss();
     });
+  }
+
+  loadAnnouncement() {
+    this.http.get('http://www.gazinetwork.one/api/v1/announcements').map(res => res.json().response).subscribe(
+        data => {
+          this.announcements = data;
+          for(let announcement of this.announcements) {
+            this.toastCtrl.create({
+               message: announcement.text,
+               showCloseButton: true,
+               position: 'top'
+            }).present();
+          }
+        },
+        err => {
+           console.log(err);
+        });
   }
 
   openPage(page) {

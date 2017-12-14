@@ -10,7 +10,7 @@ import {Headers, Http} from "@angular/http";
 */
 @Injectable()
 export class PaymentProvider {
-  PAYMENT_URL = 'http://1a88a2f8.ngrok.io/api/v1';
+  PAYMENT_URL = 'http://www.gazinetwork.one/api/v1';
   constructor(public http: Http) {
     console.log('Hello PaymentProvider Provider');
   }

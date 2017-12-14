@@ -46,11 +46,14 @@ export class InvoicesPage {
   searchInvoice(event) {
     this.initializeFilter();
     let value = event.target.value;
+    console.log(this.invoices[0]);
     if (value && value.trim() != '') {
       this.invoices = this.invoices.filter((item) => {
         let name = item.name.toLowerCase(); 
+        let mobile = item.mobile.toLowerCase();
+        let customer = item.login_id.toLowerCase();
         let term = value.toLowerCase();
-        return (name.indexOf(term) > -1);
+        return (name.indexOf(term) > -1 || mobile.indexOf(term) > -1 || customer.indexOf(term) > -1);
       });
     }
   }

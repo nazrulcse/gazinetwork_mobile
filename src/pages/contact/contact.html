@@ -11,43 +11,27 @@
   <div class='contact-form-wrapper'>
     <h4 class='signin-text'> Contact Us </h4>
     <div class='devider'></div>
-    <form #contactForm="ngForm" (ngSubmit)="contact_submit()" autocomplete="off">
-    <ion-row>
-      <ion-col>
-        <ion-list>
-          <div class='input-field'>
-          	<label> Subject </label>
-            <ion-input placeholder="Subject" name="subject" id="subjectField"
-                       type="text" required [(ngModel)]="contact.subject" #subject></ion-input>
-          </div>
-          
-          <div class='input-field'>
-          	<label> Category </label>
-            <ion-select name="category" placeholder="Select a category..." id="categoryField" required [(ngModel)]="contact.category">
-            	<ion-option value='General'> General </ion-option>
-            	<ion-option value='Billing'> Billing </ion-option>
-            	<ion-option value='Agent'> Agent </ion-option>
-            	<ion-option value='Connection'> Connection </ion-option>
-            	<ion-option value='Other'> Other </ion-option>
-            </ion-select>
-          </div>
-
-          <div class='input-field'>
-          	<label> Message </label>
-			<ion-textarea [(ngModel)]="contact.message" name="message" placeholder="Put your message..."></ion-textarea>
-          </div>
-        </ion-list>
-      </ion-col>
-    </ion-row>
-    <ion-row>
-      <ion-col>
-        <div *ngIf="error" class="alert alert-danger">{{error}}</div>
-        <div *ngIf="success" class="alert alert-success">{{success}}</div>
-        <button ion-button class="submit-btn" full type="submit"
-                [disabled]="!contactForm.form.valid">Submit Contact
-        </button>
-      </ion-col>
-    </ion-row>
-  </form>
+    <div class="address">
+      <ul>
+        <li>
+            <ion-icon ios="ios-pin" md="md-pin"></ion-icon> Address:
+            <div class="content">
+              House #262, DOHS, Mirpur-12, Dhaka
+            </div>
+        </li>
+        <li>
+          <ion-icon ios="ios-mail" md="md-mail"></ion-icon> Email:
+            <div class="content">
+              info@gazinetwork.one
+            </div>
+        </li>
+        <li>
+          <ion-icon ios="ios-phone-portrait" md="md-phone-portrait"></ion-icon> Mobile:
+            <div class="content">
+              +8801722647240
+            </div>
+        </li>
+      </ul>
+    </div>
   </div>
 </ion-content>
