@@ -2,6 +2,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { HttpClient, HttpHandler } from '@angular/common/http';
 import { ErrorHandler, NgModule } from '@angular/core';
 import { IonicApp, IonicErrorHandler, IonicModule } from 'ionic-angular';
+import { DatePickerModule } from 'datepicker-ionic2';
 
 import { MyApp } from './app.component';
 import { HomePage } from '../pages/home/home';
@@ -52,6 +53,7 @@ import { ExpensePage } from '../pages/expense/expense';
     BrowserModule,
     IonicModule.forRoot(MyApp),
     HttpModule,
+    DatePickerModule,
     IonicStorageModule.forRoot()
   ],
   bootstrap: [IonicApp],

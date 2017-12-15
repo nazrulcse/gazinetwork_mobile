@@ -51,7 +51,6 @@ export class LoginPage {
         data => {
           this.loader.dismiss();
         	this.authSuccess(data.success);
-          this.events.publish('auth:changed', data.success); 
         },
         err =>  { 
         	this.error = err;
@@ -61,8 +60,12 @@ export class LoginPage {
   }
 
   authSuccess(res) {
+    let event = this.events;
     let auth = {token: res.token, type: res.type, login_id: res.login_id, id: res.id, name: res.name};
     this.storage.set('auth', auth);
+    setTimeout(function() {
+       event.publish('auth:changed', auth);
+    }, 500);
   }
 
 }
