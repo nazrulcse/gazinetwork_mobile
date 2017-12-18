@@ -6,7 +6,17 @@
     <ion-title>Welcome to gazinetworks</ion-title>
   </ion-navbar>
 </ion-header>
-
-<ion-content padding>
-  
+<ion-content class='user-profile-container'>
+    <ion-calendar
+        (onChange)="onChange($event)"
+        [events]="myEvents"
+        (onEventClicked)="eventClicked($event)"
+        [useSwipe]="true"
+        [todayText]="Today"
+        [showEventsList]="true"
+        [disablePastDates]="false"
+        [weekDaysToDisable]="[]"
+        [daysToDisable]="[]"
+        [inputDate]="myDate">
+    </ion-calendar>
 </ion-content>

@@ -21,12 +21,11 @@ import {NavbarComponent} from '../../components/navbar/navbar';
 })
 export class LoginPage {
   registerCredentials = { customer_id: '', password: '', remember: false };
-  // LOGIN_URL = 'http://gazinetwork.one/api/v1/login'
   LOGIN_URL = 'http://www.gazinetwork.one/api/v1/login'
   contentHeader = new Headers({"Content-Type": "application/json"});
   @ViewChild('fcustomer_id') email: any;
   error: string;
-  pages: Array<{title: string, component: any}>;
+  pages: Array<{title: string, component: any, icon: string}>;
   loader: any;
 
   constructor(public nav: NavController, private events: Events, private http: Http, private storage: Storage, private navbar: NavbarComponent, private loading: LoadingController) {

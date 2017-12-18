@@ -29,6 +29,8 @@ import { InvoiceProvider } from '../providers/invoice/invoice';
 import { PaymentProvider } from '../providers/payment/payment';
 import { PaginationComponent } from 'ionic2-pagination';
 import { ExpensePage } from '../pages/expense/expense';
+import { IonCalendar } from '../components/ion-calendar/ion-calendar';
+// import { NgCalendarModule } from 'ionic2-calendar';
 
 @NgModule({
   declarations: [
@@ -47,9 +49,11 @@ import { ExpensePage } from '../pages/expense/expense';
     InvoicesPage,
     InvoicePage,
     ExpensePage,
-    PaginationComponent
+    PaginationComponent,
+    IonCalendar
   ],
   imports: [
+    // NgCalendarModule,
     BrowserModule,
     IonicModule.forRoot(MyApp),
     HttpModule,

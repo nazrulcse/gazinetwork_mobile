@@ -1,4 +1,4 @@
-import { Component, ViewChild } from '@angular/core';
+import { Component, ViewChild, Input  } from '@angular/core';
 import { Nav, Platform, LoadingController, Events, ToastController  } from 'ionic-angular';
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
@@ -76,7 +76,7 @@ export class MyApp {
         this.user.type = auth.type;
         if(auth.type == 'customer') {
           this.pages = this.pages.concat(this.customer_pages);
-          this.rootPage = ProfilePage;
+          this.rootPage = HomePage;
         }
         else {
           this.pages = this.pages.concat(this.agent_pages);
