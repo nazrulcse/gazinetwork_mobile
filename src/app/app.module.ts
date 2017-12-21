@@ -29,6 +29,7 @@ import { InvoiceProvider } from '../providers/invoice/invoice';
 import { PaymentProvider } from '../providers/payment/payment';
 import { PaginationComponent } from 'ionic2-pagination';
 import { ExpensePage } from '../pages/expense/expense';
+import { CreateCustomerPage } from '../pages/create-customer/create-customer';
 import { IonCalendar } from '../components/ion-calendar/ion-calendar';
 // import { NgCalendarModule } from 'ionic2-calendar';
 
@@ -49,6 +50,7 @@ import { IonCalendar } from '../components/ion-calendar/ion-calendar';
     InvoicesPage,
     InvoicePage,
     ExpensePage,
+    CreateCustomerPage,
     PaginationComponent,
     IonCalendar
   ],
@@ -76,7 +78,8 @@ import { IonCalendar } from '../components/ion-calendar/ion-calendar';
     CustomerPage,
     InvoicesPage,
     InvoicePage,
-    ExpensePage
+    ExpensePage,
+    CreateCustomerPage
   ],
   providers: [
     StatusBar,

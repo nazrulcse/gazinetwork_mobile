@@ -1,0 +1,130 @@
+<!--
+  Generated template for the CreateCustomerPage page.
+
+  See http://ionicframework.com/docs/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+ <ion-header>
+  <ion-navbar>
+    <button ion-button menuToggle>
+      <ion-icon name="menu"></ion-icon>
+    </button>
+    <ion-title>Gazinetworks: Create Customer </ion-title>
+  </ion-navbar>
+</ion-header>
+
+
+<ion-content padding>
+<div class='customer-form-wrapper'>
+    <h4 class='signin-text'> Create Customer Form </h4>
+    <div class='devider'></div>
+    <form #customerForm="ngForm" (ngSubmit)="customer_submit()" autocomplete="off">
+	    <ion-row>
+	      <ion-col>
+	        <ion-list>
+	          <div class='input-field'>
+	          	<label> Name </label>
+	            <ion-input placeholder="Customer Name" name="name" id="nameField"
+	                       type="text" [(ngModel)]="customer_form.name" required></ion-input>
+	          </div>
+
+	          <div class='input-field'>
+	          	<label> Email </label>
+	            <ion-input placeholder="Email" name="email" id="emailField"
+	                       type="email" [(ngModel)]="customer_form.email"></ion-input>
+	          </div>
+
+	          <div class='input-field'>
+	          	<label> Phone </label>
+	            <ion-input placeholder="Phone No" name="phone" id="mobileField"
+	                       type="text" [(ngModel)]="customer_form.phone" required></ion-input>
+	          </div>
+
+	          <div class='input-field'>
+	          	<label> Customer ID </label>
+	            <ion-input placeholder="Customer ID" name="customer_id" id="idField"
+	                       type="text" [(ngModel)]="customer_form.customer_id" required></ion-input>
+	          </div>
+
+	          <div class='input-field'>
+	          	<label> Number Of TV </label>
+	            <ion-select name="customer_tv_count" placeholder="Select a tv..." id="tvField" required [(ngModel)]="customer_form.customer_tv_count">
+	            	<ion-option *ngFor="let tv of [1,2,3,4,5,6,7,8,9,10]" value="{{tv}}"> 
+	            		{{tv}}
+	            	</ion-option>
+	            </ion-select>
+	          </div>
+
+	          <div class='input-field'>
+	          	<label> Monthly Bill </label>
+	            <ion-input placeholder="Monthly Bill" name="customer_monthly_bill" id="billField"
+	                       type="number" [(ngModel)]="customer_form.customer_monthly_bill" required></ion-input>
+	          </div>
+
+	          <div class='input-field datepicker'>
+	          	<label> Connection Date </label>
+	            <span ion-datepicker (ionChanged)="setDate($event);" [value]="localDate" [min]="localDate" full="true" calendar="true" clear class="ScheduleDate">
+                  <ion-input placeholder="Connection Date" name="customer_connection_date" id="dateField"
+	                       type="text" required disabled [(ngModel)]="customer_form.customer_connection_date"></ion-input>
+                </span>
+	          </div>
+
+	          <div class='input-field'>
+	          	<label> Zone </label>
+	            <ion-input placeholder="Customer Zone" name="customer_zone" id="zoneField"
+	                       type="text" [(ngModel)]="customer_form.customer_zone"></ion-input>
+	          </div>
+
+	          <div class='input-field'>
+	          	<label> Address </label>
+	            <ion-input placeholder="Address" name="address" id="addressField"
+	                       type="text" [(ngModel)]="customer_form.address" required></ion-input>
+	          </div>
+
+	          <div class='input-field'>
+	          	<label> Road No </label>
+	            <ion-input placeholder="Road No" name="customer_road" id="roadField"
+	                       type="text" [(ngModel)]="customer_form.customer_road"></ion-input>
+	          </div>
+
+	          <div class='input-field'>
+	          	<label> House No </label>
+	            <ion-input placeholder="House No" name="customer_house" id="houseField"
+	                       type="text" [(ngModel)]="customer_form.customer_house"></ion-input>
+	          </div>
+
+              <div class='input-field'>
+	          	<label> Flat No </label>
+	            <ion-input placeholder="Flat No" name="customer_flat" id="flatField"
+	                       type="text" [(ngModel)]="customer_form.customer_flat"></ion-input>
+	          </div>
+
+	          <div class='input-field'>
+	          	<ion-grid>
+	          	  <ion-row>
+		          	<ion-col col-6>
+	                  <ion-label>Free of charge</ion-label>
+					  <ion-checkbox color="dark" [(ngModel)]="customer_form.customer_is_free" name='customer_form.customer_is_free' checked="false"></ion-checkbox>
+		          	</ion-col>
+		          	<ion-col col-6>				
+					  <ion-label>Set-Top Box iv</ion-label>
+					  <ion-checkbox color="dark" [(ngModel)]="customer_form.customer_set_top_box_iv" name='customer_form.customer_set_top_box_iv' checked="false"></ion-checkbox>
+					</ion-col>
+				</ion-row>
+			    </ion-grid>
+	          </div>
+	        </ion-list>
+	      </ion-col>
+	    </ion-row>
+	    <ion-row>
+	      <ion-col>
+	        <div *ngIf="error" class="alert alert-danger">{{error}}</div>
+	        <div *ngIf="success" class="alert alert-success">{{success}}</div>
+	        <button ion-button class="submit-btn" full type="submit"
+	                [disabled]="!customerForm.form.valid">Create Customer
+	        </button>
+	      </ion-col>
+	    </ion-row>
+    </form>
+  </div>
+</ion-content>

@@ -17,6 +17,7 @@ import {NavbarComponent} from '../components/navbar/navbar';
 import { CustomersPage } from '../pages/customers/customers';
 import { InvoicesPage } from '../pages/invoices/invoices';
 import { ExpensePage } from '../pages/expense/expense';
+import { CreateCustomerPage } from '../pages/create-customer/create-customer';
 
 @Component({
   templateUrl: 'app.html'
@@ -37,7 +38,8 @@ export class MyApp {
     { title: 'Customers', component: CustomersPage, icon: 'people' },
     { title: 'Billings', component: InvoicesPage, icon: 'logo-usd' },
     { title: 'Payment', component: PaymentPage, icon: 'cash' },
-    { title: 'Expense', component: ExpensePage, icon: 'pricetag' }
+    { title: 'Expense', component: ExpensePage, icon: 'pricetag' },
+    { title: 'Create Customer', component: CreateCustomerPage, icon: 'people'}
   ]
   loader: any;
   user = {name: 'Anonomys', id: 'Anonomys', type: ''};

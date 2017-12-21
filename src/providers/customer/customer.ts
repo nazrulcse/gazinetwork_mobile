@@ -18,7 +18,7 @@ export class CustomerProvider {
   ]
   CUSTOMER_URL = 'http://www.gazinetwork.one/api/v1';
   loader: any;
-  constructor(private http: Http,  public loading: LoadingController) {
+  constructor(private http: Http, public loading: LoadingController) {
     this.loader = this.loading.create({
       content: "Loading..."
     }); 
@@ -32,6 +32,12 @@ export class CustomerProvider {
   getCustomer(id) {
     return this.http.get(this.CUSTOMER_URL + '/customers/' + id)
       .map(res => res.json().response);
+  }
+
+  createCustomer(data) {
+    let contentHeader = new Headers({"Content-Type": "application/json"});
+    return this.http.post(this.CUSTOMER_URL + "/customers/store", JSON.stringify(data), { headers: contentHeader })
+      .map(res => res.json());
   }
 
 }
