@@ -29,4 +29,15 @@ export class PaymentProvider {
     return this.http.get(url)
       .map(res => res.json().response);
   }
+
+  customer_monthly_payments(customer_id, year) {
+      return this.http.get(this.PAYMENT_URL + '/customers/' + customer_id + '/payments/state?year=' + year)
+      .map(res => res.json().response);
+  }
+
+  agent_collection(agent_id, from, to) {
+    let contentHeader = new Headers({"Content-Type": "application/json"});
+    return this.http.post(this.PAYMENT_URL + '/payments/collection', JSON.stringify({id: agent_id, from: from, to: to}), { headers: contentHeader })
+      .map(res => res.json().response);
+  }
 }

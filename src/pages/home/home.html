@@ -1,22 +1,63 @@
 <ion-header>
-  <ion-navbar>
-    <button ion-button menuToggle>
-      <ion-icon name="menu"></ion-icon>
-    </button>
-    <ion-title>Welcome to gazinetworks</ion-title>
-  </ion-navbar>
+<ion-navbar>
+<button ion-button menuToggle>
+<ion-icon name="menu"></ion-icon>
+</button>
+<ion-title>Welcome to gazinetworks</ion-title>
+</ion-navbar>
 </ion-header>
 <ion-content class='user-profile-container'>
-    <ion-calendar
-        (onChange)="onChange($event)"
-        [events]="myEvents"
-        (onEventClicked)="eventClicked($event)"
-        [useSwipe]="true"
-        [todayText]="Today"
-        [showEventsList]="true"
-        [disablePastDates]="false"
-        [weekDaysToDisable]="[]"
-        [daysToDisable]="[]"
-        [inputDate]="myDate">
-    </ion-calendar>
+<div class='alert alert-danger' *ngIf="error">
+    {{error}}
+</div>
+<div *ngIf='is_customer'>
+    <div class="year-navigator">
+        <ul>
+            <li class="prev" (click)="changeYear(-1)">&#10094;</li>
+            <li class="next" (click)="changeYear(1)">&#10095;</li>
+            <li>
+                <span style="font-size:22px">
+                    {{calendar.year}}
+                </span>
+            </li>
+        </ul>
+    </div>
+    <div class='calendar-body'>
+        <ul class="months clearfix">
+            <li *ngFor="let month of calendar.months; let i = index" [class.active]="(i + 1) == calendar.month">
+                {{month.name}}
+                <span class='marked' *ngIf="month.payment">✓</span>
+            </li>
+        </ul>
+    </div>
+    <div class='hints'>
+        Customer Monthly Payment Calendar View.
+    </div>
+</div>
+<div *ngIf="!is_customer">
+    <div class='agent-collection'>
+        <div class='title'>
+            Agent Collection View
+        </div>
+        <div class='body'>
+            <ion-item style='margin-bottom: 5px;'>
+                <ion-label>Collection From </ion-label>
+                <ion-datetime displayFormat="YYYY-MM-DD" [(ngModel)]="fromDate"></ion-datetime>
+            </ion-item>
+
+            <ion-item>
+                <ion-label>Collection To </ion-label>
+                <ion-datetime displayFormat="YYYY-MM-DD" [(ngModel)]="toDate"></ion-datetime>
+            </ion-item>
+            <div class='clearfix'>
+              <button ion-button color="light" (click)="loadPaymentCollection()" class='pull-right'>Serch</button>
+            </div>
+        </div>
+        <div class='search-result'>
+          <h3 style='text-align: center;'>
+           Total Collection: {{collection}} Tk
+          </h3>
+        </div>
+    </div>
+</div>
 </ion-content>
