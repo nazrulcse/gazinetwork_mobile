@@ -22,7 +22,7 @@ export class CustomersPage {
   loader: any;
   constructor(public navCtrl: NavController, public loading: LoadingController, public navParams: NavParams, customerService: CustomerProvider) {
     this.loader = loading.create({
-      content: 'Loaidng Customer...'
+      content: 'Loading Customer...'
     })
     this.loader.present();
   	customerService.all().subscribe(
