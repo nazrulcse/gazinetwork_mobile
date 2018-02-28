@@ -3,9 +3,9 @@ import { IonicPageModule } from 'ionic-angular';
 import { CreateCustomerPage } from './create-customer';
 
 @NgModule({
-  declarations: [
-    CreateCustomerPage,
-  ],
+  // declarations: [
+  //   CreateCustomerPage,
+  // ],
   imports: [
     IonicPageModule.forChild(CreateCustomerPage),
   ],

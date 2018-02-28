@@ -13,12 +13,12 @@ import { Platform, Nav } from 'ionic-angular';
   templateUrl: 'navbar.html'
 })
 
-@Injectable()
+// @Injectable()
 export class NavbarComponent {
 
   pages: Array<{title: string, component: any}>;
   data: any;
-  @ViewChild(Nav) nav: Nav;
+  // @ViewChild(Nav) nav: Nav;
 
   constructor() {
     this.pages = [];    

@@ -70,7 +70,7 @@ import { IonCalendar } from '../components/ion-calendar/ion-calendar';
     LoginPage,
     ProfilePage,
     LogoutPage,
-    NavbarComponent,
+    // NavbarComponent,
     ContactPage,
     ComplainPage,
     PaymentPage,
@@ -86,9 +86,7 @@ import { IonCalendar } from '../components/ion-calendar/ion-calendar';
     SplashScreen,
     {provide: ErrorHandler, useClass: IonicErrorHandler},
     AuthServiceProvider,
-    NavbarComponent,
     CustomerProvider,
-    HttpClient,
     InvoiceProvider,
     PaymentProvider
   ]

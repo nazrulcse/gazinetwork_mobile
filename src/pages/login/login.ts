@@ -5,7 +5,7 @@ import {Headers, Http} from "@angular/http";
 import {Storage} from "@ionic/storage";
 import 'rxjs/add/operator/map';
 import { ProfilePage } from '../../pages/profile/profile';
-import {NavbarComponent} from '../../components/navbar/navbar';
+// import {NavbarComponent} from '../../components/navbar/navbar';
 
 /**
  * Generated class for the LoginPage page.
@@ -28,8 +28,8 @@ export class LoginPage {
   pages: Array<{title: string, component: any, icon: string}>;
   loader: any;
 
-  constructor(public nav: NavController, private events: Events, private http: Http, private storage: Storage, private navbar: NavbarComponent, private loading: LoadingController) {
-    navbar.pages = [{ title: 'Profile', component: ProfilePage }];
+  constructor(public nav: NavController, private events: Events, private http: Http, private storage: Storage, private loading: LoadingController) {
+    // navbar.pages = [{ title: 'Profile', component: ProfilePage }];
   }
 
   ionViewDidLoad() {

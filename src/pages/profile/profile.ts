@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams, LoadingController } from 'ionic-angular';
-import {NavbarComponent} from '../../components/navbar/navbar';
+// import {NavbarComponent} from '../../components/navbar/navbar';
 import {HomePage} from '../../pages/home/home';
 import {ContactPage} from '../../pages/contact/contact';
 import {ComplainPage} from '../../pages/complain/complain';
@@ -15,7 +15,7 @@ import {Storage} from "@ionic/storage";
  * Ionic pages and navigation.
  */
 
-@IonicPage()
+// @IonicPage()
 @Component({
   selector: 'page-profile',
   templateUrl: 'profile.html',
@@ -28,7 +28,7 @@ export class ProfilePage {
   customer_invoices = [];
   is_customer = false;
 
-  constructor(public navCtrl: NavController, public navParams: NavParams, private navbar: NavbarComponent, private http: Http, private storage: Storage, private loading: LoadingController) {
+  constructor(public navCtrl: NavController, public navParams: NavParams, private http: Http, private storage: Storage, private loading: LoadingController) {
     this.profile = {name: 'Md Nazrul Islam'};
     this.loader = this.loading.create({
       content: "Loading..."
