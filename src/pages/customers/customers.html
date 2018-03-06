@@ -1,44 +1,49 @@
 <ion-header>
-  <ion-navbar>
-    <button ion-button menuToggle>
-      <ion-icon name="menu"></ion-icon>
-    </button>
-    <ion-title>Gazinetworks: Customers</ion-title>
-  </ion-navbar>
+	<ion-navbar>
+		<button ion-button menuToggle>
+			<ion-icon name="menu"></ion-icon>
+		</button>
+		<ion-title>Gazinetworks: Customers</ion-title>
+	</ion-navbar>
 </ion-header>
 
 <ion-content>
-<ion-searchbar (ionInput)="searchCustomer($event)" placeholder="Search by name or customer id"></ion-searchbar>
-    <div *ngIf='error' class='alert alert-danger'> {{error}}</div>
-  	<ion-list>
-	  <div class='customer-lists'>
-	    <table class='table'>
-	    	<thead>
-	    		<tr>
-	    			<th>Name</th>
-	    			<!-- <th>ID</th> -->
-	    			<th>Phone</th>
-	    			<th>TV</th>
-	    			<th>Due</th>
-	    			<th></th>
-	    		</tr>
-	    	</thead>
-	    	<tbody>
-	    		<tr *ngFor="let customer of customers">
-	    			<td>{{customer.name}}</td>
-	    			<!-- <td>{{customer.customer_id}}</td> -->
-	    			<td>{{customer.mobile}}</td>
-	    			<td>{{customer.tv}}</td>
-	    			<td>{{customer.due}}</td>
-	    			<td>
-	    				<button ion-button outline small (click)=getcustomer(customer.id)> Details </button>
-	    			</td>
+	<!-- <ion-searchbar (ionInput)="searchCustomer($event)" placeholder="Search by name or customer id"></ion-searchbar> -->
+	<ion-item class="customer-search-wrapper">
+		<ion-input type="text" placeholder="Search by name or customer id" [(ngModel)]="query_param" clearInput></ion-input>
+		<button ion-button item-right (click)="searchCustomer()">Search</button>
+	</ion-item>
+
+	<div *ngIf='error' class='alert alert-danger'> {{error}}</div>
+	<ion-list>
+		<div class='customer-lists'>
+			<table class='table'>
+				<thead>
+					<tr>
+						<th>Name</th>
+						<!-- <th>ID</th> -->
+						<th>Phone</th>
+						<th>TV</th>
+						<th>Due</th>
+						<th></th>
+					</tr>
+				</thead>
+				<tbody>
+					<tr *ngFor="let customer of customers">
+						<td>{{customer.name}}</td>
+						<!-- <td>{{customer.customer_id}}</td> -->
+						<td>{{customer.mobile}}</td>
+						<td>{{customer.tv}}</td>
+						<td>{{customer.due}}</td>
+						<td>
+							<button ion-button outline small (click)=getcustomer(customer.id)> Details </button>
+						</td>
 					</tr>
 					<ion-infinite-scroll (ionInfinite)="doInfinite($event)">
 						<ion-infinite-scroll-content></ion-infinite-scroll-content>
 					</ion-infinite-scroll>
-	    	</tbody>
-	    </table>
-	  </div>
+				</tbody>
+			</table>
+		</div>
 	</ion-list>
 </ion-content>

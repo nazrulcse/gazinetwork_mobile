@@ -56,9 +56,8 @@ export class CustomersPage {
     );
   }
 
-  searchCustomer(event) {
+  searchCustomer() {
     this.page = 1;
-    this.query_param = event.target.value == undefined ? '' : event.target.value;
     this.get_customers();
     if(this.reActiveInfinite) {
       this.reActiveInfinite.enable(true);

@@ -25,3 +25,19 @@ page-customers {
   	}
   }
 }
+
+.customer-search-wrapper {
+	padding: 15px;
+	background: #ebebeb;
+	.item-inner {
+		background: white;
+		border: 1px solid #c5bfbf;
+		padding-right: 0px !important;
+		.item-button {
+			padding: 0 1.8em;
+			height: 4.5rem;
+			margin: 0;
+			border-radius: 0px; 
+		}
+	}
+}
