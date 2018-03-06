@@ -24,8 +24,8 @@ export class CustomerProvider {
     }); 
   }
 
-  all() {
-   return this.http.get(this.CUSTOMER_URL + '/customers')
+  all(page, query_param) {
+   return this.http.get(this.CUSTOMER_URL + '/customers?page=' + page + '&q=' + query_param)
       .map(res => res.json().response);
   }
 

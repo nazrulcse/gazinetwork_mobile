@@ -8,7 +8,7 @@
 </ion-header>
 
 <ion-content>
-<ion-searchbar (ionInput)="searchCustomer($event)"></ion-searchbar>
+<ion-searchbar (ionInput)="searchCustomer($event)" placeholder="Search by name or customer id"></ion-searchbar>
     <div *ngIf='error' class='alert alert-danger'> {{error}}</div>
   	<ion-list>
 	  <div class='customer-lists'>
@@ -33,7 +33,10 @@
 	    			<td>
 	    				<button ion-button outline small (click)=getcustomer(customer.id)> Details </button>
 	    			</td>
-	    		</tr>
+					</tr>
+					<ion-infinite-scroll (ionInfinite)="doInfinite($event)">
+						<ion-infinite-scroll-content></ion-infinite-scroll-content>
+					</ion-infinite-scroll>
 	    	</tbody>
 	    </table>
 	  </div>

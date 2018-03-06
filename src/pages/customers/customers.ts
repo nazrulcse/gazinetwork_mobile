@@ -17,25 +17,13 @@ import {CustomerPage} from '../../pages/customer/customer';
 })
 export class CustomersPage {
   customers = [];
-  filter_customers = [];
   error: any;
   loader: any;
-  constructor(public navCtrl: NavController, public loading: LoadingController, public navParams: NavParams, customerService: CustomerProvider) {
-    this.loader = loading.create({
-      content: 'Loading Customer...'
-    })
-    this.loader.present();
-  	customerService.all().subscribe(
-        data => {
-          this.customers = data;
-          this.filter_customers = data;
-          this.loader.dismiss();
-        },
-        err =>  { 
-          this.error = err;
-          this.loader.dismiss();
-        }
-      );
+  query_param = '';
+  page = 1;
+  reActiveInfinite: any;
+  constructor(public navCtrl: NavController, public loading: LoadingController, public navParams: NavParams, private customerService: CustomerProvider) {
+    this.get_customers();
   }
 
   ionViewDidLoad() {
@@ -46,21 +34,70 @@ export class CustomersPage {
   	this.navCtrl.push(CustomerPage, {id: id});
   }
 
-  initializeFilter() {
-    this.customers = this.filter_customers;
+  doInfinite(infiniteScroll) {
+    this.page += 1;
+    this.reActiveInfinite = infiniteScroll;
+    this.customerService.all(this.page, this.query_param).subscribe(
+      data => {
+        if (data.length > 0) {
+          for (let customer of data) {
+            this.customers.push(customer);
+          }
+          infiniteScroll.complete();
+        }
+        else {
+          infiniteScroll.enable(false);
+        }
+      },
+      err => {
+        this.error = err;
+        this.page -= 1;
+      }
+    );
   }
 
   searchCustomer(event) {
-    this.initializeFilter();
-    let value = event.target.value;
-    if (value && value.trim() != '') {
-      this.customers = this.customers.filter((item) => {
-        let name = item.name.toLowerCase(); 
-        let mobile = item.mobile.toLowerCase();
-        let customer = item.customer_id.toLowerCase();
-        let term = value.toLowerCase();
-        return (name.indexOf(term) > -1 || mobile.indexOf(term) > -1 || customer.indexOf(term) > -1);
-      });
+    this.page = 1;
+    this.query_param = event.target.value == undefined ? '' : event.target.value;
+    this.get_customers();
+    if(this.reActiveInfinite) {
+      this.reActiveInfinite.enable(true);
     }
   }
+
+  search_cancel(event) {
+    console.log('cancelling');
+    this.page = 1;
+    this.query_param = '';
+    this.get_customers();
+    if(this.reActiveInfinite) {
+      this.reActiveInfinite.enable(true);
+    }
+  }
+
+  get_customers() {
+    this.custom_loading(true);
+  	this.customerService.all(this.page, this.query_param).subscribe(
+        data => {
+          this.customers = data;
+          this.custom_loading(false);
+        },
+        err =>  { 
+          this.error = err;
+          this.custom_loading(false);
+        }
+      );
+  }
+
+  custom_loading(flag, message = 'Loading...') {
+    if(flag) {
+      this.loader = this.loading.create({
+         content: message
+      });
+      this.loader.present();
+    }
+    else {
+      this.loader.dismiss();
+    }
+ }
 }

@@ -82,7 +82,7 @@ export class MyApp {
         }
         else {
           this.pages = this.pages.concat(this.agent_pages);
-          this.rootPage = CustomersPage;
+          this.rootPage = HomePage;
         }
         this.pages.push({ title: 'Logout', component: LogoutPage, icon: 'log-out' });
       }
