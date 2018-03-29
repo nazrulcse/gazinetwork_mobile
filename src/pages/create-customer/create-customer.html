@@ -59,7 +59,13 @@
 	          	<label> Monthly Bill </label>
 	            <ion-input placeholder="Monthly Bill" name="customer_monthly_bill" id="billField"
 	                       type="number" [(ngModel)]="customer_form.customer_monthly_bill" required></ion-input>
-	          </div>
+						</div>
+						
+						<div class='input-field'>
+								<label> Connection Charge </label>
+								<ion-input placeholder="Connection Charge" name="customer_connection_charge" id="connectionChargeField"
+													 type="number" [(ngModel)]="customer_form.customer_connection_charge" required></ion-input>
+							</div>
 
 	          <div class='input-field datepicker'>
 	          	<label> Connection Date </label>

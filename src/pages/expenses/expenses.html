@@ -1,0 +1,44 @@
+<ion-header>
+  <ion-navbar>
+    <button ion-button menuToggle>
+      <ion-icon name="menu"></ion-icon>
+    </button>
+    <ion-title>Gazinetworks: Expenses</ion-title>
+  </ion-navbar>
+</ion-header>
+
+
+<ion-content>
+  <div *ngIf='error' class='alert alert-danger'> {{error}}</div>
+  <ion-list>
+    <div class='expense-lists'>
+      <table class='table'>
+        <thead>
+          <tr>
+            <th>Title</th>
+            <th>ID</th>
+            <th>Date</th>
+            <th>Amount</th>
+            <th></th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let expense of expenses">
+            <td>{{expense.title}}</td>
+            <td>{{expense.id}}</td>
+            <td>{{expense.date}}</td>
+            <td>{{expense.amount}}</td>
+            <td>
+              <button ion-button outline small icon-only (click)="getExpense(expense.id)">
+                <ion-icon ios="ios-eye" md="md-eye"></ion-icon>
+              </button>
+            </td>
+          </tr>
+          <ion-infinite-scroll (ionInfinite)="doInfinite($event)">
+            <ion-infinite-scroll-content></ion-infinite-scroll-content>
+          </ion-infinite-scroll>
+        </tbody>
+      </table>
+    </div>
+  </ion-list>
+</ion-content>

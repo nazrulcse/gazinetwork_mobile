@@ -1,0 +1,48 @@
+<ion-header>
+  <ion-navbar>
+    <button ion-button menuToggle>
+      <ion-icon name="menu"></ion-icon>
+    </button>
+    <ion-title>Gazinetworks: Other Income Invoices</ion-title>
+  </ion-navbar>
+</ion-header>
+
+
+<ion-content>
+  <div *ngIf='error' class='alert alert-danger'> {{error}}</div>
+  <ion-list>
+    <div class='other-income-lists'>
+      <table class='table'>
+        <thead>
+          <tr>
+            <th>Title</th>
+            <th>ID</th>
+            <th>Bill Period</th>
+            <th>Amount</th>
+            <th>Paid</th>
+            <th>Due</th>
+            <th></th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let other_income of otherIncomes">
+            <td>{{other_income.title}}</td>
+            <td>{{other_income.id}}</td>
+            <td>{{other_income.bill_period}}</td>
+            <td>{{other_income.amount}}</td>
+            <td>{{other_income.paid}}</td>
+            <td>{{other_income.due}}</td>
+            <td>
+              <button ion-button outline small icon-only (click)=getOtherIncome(other_income.id)>
+                <ion-icon ios="ios-eye" md="md-eye"></ion-icon>
+              </button>
+            </td>
+          </tr>
+          <ion-infinite-scroll (ionInfinite)="doInfinite($event)">
+            <ion-infinite-scroll-content></ion-infinite-scroll-content>
+          </ion-infinite-scroll>
+        </tbody>
+      </table>
+    </div>
+  </ion-list>
+</ion-content>

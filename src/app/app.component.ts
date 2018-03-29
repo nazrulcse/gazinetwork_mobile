@@ -18,6 +18,10 @@ import { CustomersPage } from '../pages/customers/customers';
 import { InvoicesPage } from '../pages/invoices/invoices';
 import { ExpensePage } from '../pages/expense/expense';
 import { CreateCustomerPage } from '../pages/create-customer/create-customer';
+import { CreateInvoicePage } from '../pages/create-invoice/create-invoice';
+import { OtherIncomesPage } from '../pages/other-incomes/other-incomes';
+import { CreateExpensePage } from '../pages/create-expense/create-expense';
+import { ExpensesPage } from '../pages/expenses/expenses';
 
 @Component({
   templateUrl: 'app.html'
@@ -38,8 +42,11 @@ export class MyApp {
     { title: 'Customers', component: CustomersPage, icon: 'people' },
     { title: 'Billings', component: InvoicesPage, icon: 'logo-usd' },
     { title: 'Payment', component: PaymentPage, icon: 'cash' },
-    { title: 'Expense', component: ExpensePage, icon: 'pricetag' },
-    { title: 'Create Customer', component: CreateCustomerPage, icon: 'people'}
+    { title: 'Expenses', component: ExpensesPage, icon: 'pricetag' },
+    { title: 'Create Expense', component: CreateExpensePage, icon: 'pricetag' },
+    { title: 'Create Customer', component: CreateCustomerPage, icon: 'people'},
+    { title: 'Other Income Invoices', component: OtherIncomesPage, icon: 'logo-usd'},
+    { title: 'Create Other Income', component: CreateInvoicePage, icon: 'logo-usd'}
   ]
   loader: any;
   user = {name: 'Anonomys', id: 'Anonomys', type: ''};

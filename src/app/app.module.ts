@@ -22,15 +22,20 @@ import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
 import { AuthServiceProvider } from '../providers/auth-service/auth-service';
 import { HttpModule } from '@angular/http';
-import {IonicStorageModule} from '@ionic/storage';
-import {NavbarComponent} from '../components/navbar/navbar';
+import { IonicStorageModule } from '@ionic/storage';
+import { NavbarComponent } from '../components/navbar/navbar';
 import { CustomerProvider } from '../providers/customer/customer';
 import { InvoiceProvider } from '../providers/invoice/invoice';
 import { PaymentProvider } from '../providers/payment/payment';
 import { PaginationComponent } from 'ionic2-pagination';
 import { ExpensePage } from '../pages/expense/expense';
+import { CreateExpensePage } from '../pages/create-expense/create-expense';
 import { CreateCustomerPage } from '../pages/create-customer/create-customer';
+import { CreateInvoicePage } from '../pages/create-invoice/create-invoice';
+import { OtherIncomesPage } from '../pages/other-incomes/other-incomes';
 import { IonCalendar } from '../components/ion-calendar/ion-calendar';
+import { ExpenseProvider } from '../providers/expense/expense';
+import { ExpensesPage } from '../pages/expenses/expenses';
 // import { NgCalendarModule } from 'ionic2-calendar';
 
 @NgModule({
@@ -50,7 +55,11 @@ import { IonCalendar } from '../components/ion-calendar/ion-calendar';
     InvoicesPage,
     InvoicePage,
     ExpensePage,
+    ExpensesPage,
+    CreateExpensePage,
     CreateCustomerPage,
+    CreateInvoicePage,
+    OtherIncomesPage,
     PaginationComponent,
     IonCalendar
   ],
@@ -79,7 +88,11 @@ import { IonCalendar } from '../components/ion-calendar/ion-calendar';
     InvoicesPage,
     InvoicePage,
     ExpensePage,
-    CreateCustomerPage
+    ExpensesPage,
+    CreateExpensePage,
+    CreateCustomerPage,
+    CreateInvoicePage,
+    OtherIncomesPage
   ],
   providers: [
     StatusBar,
@@ -88,7 +101,8 @@ import { IonCalendar } from '../components/ion-calendar/ion-calendar';
     AuthServiceProvider,
     CustomerProvider,
     InvoiceProvider,
-    PaymentProvider
+    PaymentProvider,
+    ExpenseProvider
   ]
 })
 export class AppModule {}

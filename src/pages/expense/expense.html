@@ -1,74 +1,51 @@
 <ion-header>
   <ion-navbar>
-  	<button ion-button menuToggle>
-      <ion-icon name="menu"></ion-icon>
-    </button>
-    <ion-title>
-     Gazinetworks: Expense
-    </ion-title>
+    <ion-title> Expense Detail </ion-title>
   </ion-navbar>
 </ion-header>
 
 
-<ion-content>
-	<div class='contact-form-wrapper'>
-    <h4 class='signin-text'> Expense Form </h4>
-    <div class='devider'></div>
-    <form #complainForm="ngForm" (ngSubmit)="expense_submit()" autocomplete="off">
-	    <ion-row>
-	      <ion-col>
-	        <ion-list>
-	          <div class='input-field'>
-	          	<label> Title </label>
-	            <ion-input placeholder="Title" name="title" id="subjectField"
-	                       type="text" required [(ngModel)]="expense_form.title" #title></ion-input>
-	          </div>
-	          
-	          <div class='input-field'>
-	          	<label> Category </label>
-	            <ion-select name="category" placeholder="Select a category..." id="categoryField" required [(ngModel)]="expense_form.category">
-	            	<ion-option *ngFor="let catg of expense_category" value="{{catg.name}}"> 
-	            		{{catg.name}}
-	            	</ion-option>
-	            </ion-select>
-	          </div>
+<ion-content padding>
+  <div *ngIf='error' class='alert alert-danger'> {{error}}</div>
+  <ion-grid>
+    <ion-row>
+      <ion-col col-4><b>ID</b></ion-col>
+      <ion-col col-8>: {{ expense.id }}</ion-col>
+    </ion-row>
 
-	          <div class='input-field datepicker'>
-	          	<label> Date </label>
-	            <span ion-datepicker (ionChanged)="setDate($event);" [value]="localDate" [min]="localDate" full="true" calendar="true" clear class="ScheduleDate">
-                  <ion-input placeholder="Date" name="date" id="dateField"
-	                       type="text" required disabled [(ngModel)]="expense_form.date"></ion-input>
-                </span>
-	          </div>
+    <ion-row>
+      <ion-col col-4><b>Category</b></ion-col>
+      <ion-col col-8>: {{ expense.category }}</ion-col>
+    </ion-row>
 
-	          <div class='input-field'>
-	          	<label> Voucher </label>
-	            <ion-input placeholder="Voucher No" name="voucher_no" id="voucherField"
-	                       type="text" [(ngModel)]="expense_form.voucher_no"></ion-input>
-	          </div>
+    <ion-row>
+      <ion-col col-4><b>Date</b></ion-col>
+      <ion-col col-8>: {{ expense.date }}</ion-col>
+    </ion-row>
 
-	          <div class='input-field'>
-	          	<label> Amount </label>
-	            <ion-input placeholder="Amount" name="amount" id="amountField"
-	                       type="number" required [(ngModel)]="expense_form.amount"></ion-input>
-	          </div>
+    <ion-row>
+      <ion-col col-4><b>Title</b></ion-col>
+      <ion-col col-8>: {{ expense.title }}</ion-col>
+    </ion-row>
 
-	          <div class='input-field'>
-	          	<label> Description </label>
-				<ion-textarea [(ngModel)]="expense_form.description" name="message" placeholder="Expense Description..."></ion-textarea>
-	          </div>
-	        </ion-list>
-	      </ion-col>
-	    </ion-row>
-	    <ion-row>
-	      <ion-col>
-	        <div *ngIf="error" class="alert alert-danger">{{error}}</div>
-	        <div *ngIf="success" class="alert alert-success">{{success}}</div>
-	        <button ion-button class="submit-btn" full type="submit"
-	                [disabled]="!complainForm.form.valid">Submit Expense
-	        </button>
-	      </ion-col>
-	    </ion-row>
-    </form>
-  </div>
+    <ion-row>
+      <ion-col col-4><b>Amount</b></ion-col>
+      <ion-col col-8>: {{ expense.amount }}</ion-col>
+    </ion-row>
+
+    <ion-row>
+      <ion-col col-4><b>Description</b></ion-col>
+      <ion-col col-8>: {{ expense.description }}</ion-col>
+    </ion-row>
+
+    <ion-row>
+      <ion-col col-4><b>Voucher No</b></ion-col>
+      <ion-col col-8>: {{ expense.voucher_no }}</ion-col>
+    </ion-row>
+
+    <ion-row>
+      <ion-col col-4><b>Status</b></ion-col>
+      <ion-col col-8>: {{ expense.is_approved ? 'Approved' : 'Not Approved' }}</ion-col>
+    </ion-row>
+  </ion-grid>
 </ion-content>

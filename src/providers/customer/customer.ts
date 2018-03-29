@@ -17,6 +17,7 @@ export class CustomerProvider {
     {id: 3, name: 'Miss Abc', mobile: '01722625424', address: '', tv: '2', payment_due: '300'}
   ]
   CUSTOMER_URL = 'http://www.gazinetwork.one/api/v1';
+  CUSTOMER_V2_URL = 'http://www.gazinetwork.one/api/v2';
   loader: any;
   constructor(private http: Http, public loading: LoadingController) {
     this.loader = this.loading.create({
@@ -25,7 +26,7 @@ export class CustomerProvider {
   }
 
   all(page, query_param) {
-   return this.http.get(this.CUSTOMER_URL + '/customers?page=' + page + '&q=' + query_param)
+   return this.http.get(this.CUSTOMER_V2_URL + '/customers?page=' + page + '&q=' + query_param)
       .map(res => res.json().response);
   }
 

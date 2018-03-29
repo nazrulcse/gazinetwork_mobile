@@ -1,0 +1,25 @@
+page-expenses {
+    .expense-lists {
+        ul {
+            padding: 0;
+            margin: 0;
+            list-style: none;
+        }
+        .action-icon {
+            font-size: 14px;
+            padding: 2px;
+            cursor: pointer;
+        }
+    }
+    .table {
+        thead,
+        tbody {
+            tr {
+                th,
+                td {
+                    padding: 5px;
+                }
+            }
+        }
+    }
+}

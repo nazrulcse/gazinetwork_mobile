@@ -1,8 +1,8 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams, LoadingController } from 'ionic-angular';
-import {Headers, Http} from "@angular/http";
-import {Storage} from "@ionic/storage";
-import { CustomersPage } from '../../pages/customers/customers';
+import { Headers, Http } from "@angular/http";
+import { Storage } from "@ionic/storage";
+import { ExpenseProvider } from '../../providers/expense/expense';
 
 /**
  * Generated class for the ExpensePage page.
@@ -16,76 +16,40 @@ import { CustomersPage } from '../../pages/customers/customers';
   templateUrl: 'expense.html',
 })
 export class ExpensePage {
-  expense_category = [];
+  expense = { id: '', category: '', title: '', date: '', amount: '', description: '', is_approved: '', voucher_no: '' };
   loader: any;
   error: any;
-  success: any;
-  localDate = new Date();
-  expense_form = {category: '', user_id: '', title: '', date: this.localDate.toISOString().slice(0,10), amount: '', received_by: '', voucher_no: '', description: ''}
-  constructor(public navCtrl: NavController, 
-    private storage: Storage, 
-    public navParams: NavParams, 
-    private http: Http,
-    private loading: LoadingController
-    ) {
-  	this.storage.get('auth').then((auth) => {
-      this.expense_form.received_by = auth.login_id;
-      this.expense_form.user_id = auth.id;
-    });
-
-    this.loadCategory();
+  constructor(public navCtrl: NavController, public navParams: NavParams, private loading: LoadingController, private expenseService: ExpenseProvider) {
+    this.expense.id = this.navParams.get('id');
+    console.log(this.expense.id);
+    this.custom_loading(true);
+    expenseService.getExpense(this.expense.id).subscribe(
+      data => {
+        this.custom_loading(false);
+        console.log(data);
+        data.id = this.expense.id;
+        this.expense = data;
+      }, 
+      err => {
+        this.custom_loading(false);
+        this.error = err;
+      }
+    );
   }
 
   ionViewDidLoad() {
     console.log('ionViewDidLoad ExpensePage');
   }
 
-  loadCategory() {
-  	this.http.get('http://gazinetwork.one/api/v1/expenses/new').map(res => res.json().response).subscribe(
-  		data => {
-           this.expense_category = data;
-  		},
-  		err => {
-  	    
-  	  }
-  	);
+  custom_loading(flag, message = 'Loading...') {
+    if (flag) {
+      this.loader = this.loading.create({
+        content: message
+      });
+      this.loader.present();
+    }
+    else {
+      this.loader.dismiss();
+    }
   }
-
-  setDate($event) {
-     this.expense_form.date = $event.getFullYear() + "-" + ($event.getMonth() + 1) + "-" + $event.getDate();
-  }
-
-  expense_submit() {
-    let contentHeader = new Headers({"Content-Type": "application/json"});
-    let nav = this.navCtrl;
-    this.loader = this.loading.create({
-      content: "Creating Expense..."
-    }); 
-    this.loader.present();
-    this.http.post('http://gazinetwork.one/api/v1/expenses/store', JSON.stringify(this.expense_form), { headers: contentHeader })
-      .map(res => res.json())
-      .subscribe(
-        data => {
-          this.loader.dismiss();
-          let response = data.response;
-          if(data.status == 200) {
-            this.success = data.response;
-            this.error = '';
-            setTimeout(function() {
-              nav.setRoot(CustomersPage);
-            }, 3000);
-          }
-          else {
-            this.success = '';
-            this.error = data.response;
-          }
-        },
-        err =>  { 
-          this.error = err;
-          this.success = '';
-          this.loader.dismiss();
-      }
-    ); 
-  }
-
 }

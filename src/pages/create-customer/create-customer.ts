@@ -18,7 +18,7 @@ import {CustomerPage} from '../../pages/customer/customer';
 export class CreateCustomerPage {
 	customer_form = {name: '', email: '', phone: '', customer_id: "CU" + Math.round(Math.random() * 1000000), address: '', 
 	                 customer_road: '', customer_house: '', customer_flat: '', customer_tv_count: 1, customer_monthly_bill: '', 
-	                 customer_is_free: false, customer_set_top_box_iv: false, customer_zone: '', customer_connection_date: '' }
+	                 customer_is_free: false, customer_set_top_box_iv: false, customer_zone: '', customer_connection_charge: '', customer_connection_date: '' }
 	localDate = new Date();
 	loader: any;
 	error: any;
