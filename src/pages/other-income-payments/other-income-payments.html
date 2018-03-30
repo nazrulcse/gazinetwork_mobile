@@ -4,17 +4,12 @@
       <ion-icon name="menu"></ion-icon>
     </button>
     <ion-title>
-      Payments History
+      Other Income Payments
     </ion-title>
   </ion-navbar>
 </ion-header>
 
 <ion-content class='payment-history-wrapper'>
-
-  <ion-item class="custom-search-wrapper" *ngIf="!is_customer">
-    <ion-input type="text" placeholder="Search by customer name or id" [(ngModel)]="query_params" clearInput></ion-input>
-    <button ion-button item-right (click)="searchPayment()">Search</button>
-  </ion-item>
 
   <div class='alert alert-danger' *ngIf="error">{{error}}</div>
 
@@ -23,19 +18,18 @@
       <table class='table'>
         <thead>
           <tr>
-            <th *ngIf="!is_customer">Customer</th>
+            <th>ID</th>
+            <th>Invoice Amount</th>
+            <th>Paid Amount</th>
             <th>Date</th>
-            <th>Bill Period</th>
-            <th>Amount</th>
           </tr>
         </thead>
         <tbody>
           <tr *ngFor="let payment of payments">
-            <!-- <td *ngIf="!is_customer">{{payment.customer_id}}</td> -->
-            <td *ngIf="!is_customer">{{payment.name}}</td>
-            <td>{{payment.date}}</td>
-            <td>{{payment.month}}</td>
+            <td>{{payment.id}}</td>
+            <td>{{payment.invoice_amount}}</td>
             <td>{{payment.amount}}</td>
+            <td>{{payment.date}}</td>
           </tr>
           <ion-infinite-scroll (ionInfinite)="doInfinite($event)">
             <ion-infinite-scroll-content></ion-infinite-scroll-content>

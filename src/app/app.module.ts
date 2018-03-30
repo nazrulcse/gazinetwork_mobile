@@ -36,6 +36,8 @@ import { OtherIncomesPage } from '../pages/other-incomes/other-incomes';
 import { IonCalendar } from '../components/ion-calendar/ion-calendar';
 import { ExpenseProvider } from '../providers/expense/expense';
 import { ExpensesPage } from '../pages/expenses/expenses';
+import { OtherIncomePage } from '../pages/other-income/other-income';
+import { OtherIncomePaymentsPage } from '../pages/other-income-payments/other-income-payments';
 // import { NgCalendarModule } from 'ionic2-calendar';
 
 @NgModule({
@@ -50,6 +52,7 @@ import { ExpensesPage } from '../pages/expenses/expenses';
     ContactPage,
     ComplainPage,
     PaymentPage,
+    OtherIncomePaymentsPage,
     CustomersPage,
     CustomerPage,
     InvoicesPage,
@@ -60,6 +63,7 @@ import { ExpensesPage } from '../pages/expenses/expenses';
     CreateCustomerPage,
     CreateInvoicePage,
     OtherIncomesPage,
+    OtherIncomePage,
     PaginationComponent,
     IonCalendar
   ],
@@ -83,6 +87,7 @@ import { ExpensesPage } from '../pages/expenses/expenses';
     ContactPage,
     ComplainPage,
     PaymentPage,
+    OtherIncomePaymentsPage,
     CustomersPage,
     CustomerPage,
     InvoicesPage,
@@ -92,7 +97,8 @@ import { ExpensesPage } from '../pages/expenses/expenses';
     CreateExpensePage,
     CreateCustomerPage,
     CreateInvoicePage,
-    OtherIncomesPage
+    OtherIncomesPage,
+    OtherIncomePage
   ],
   providers: [
     StatusBar,

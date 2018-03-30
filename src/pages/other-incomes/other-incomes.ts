@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams, LoadingController } from 'ionic-angular';
 import { InvoiceProvider } from '../../providers/invoice/invoice';
 import { InvoicePage } from '../invoice/invoice';
+import { OtherIncomePage } from '../other-income/other-income';
 
 /**
  * Generated class for the OtherIncomesPage page.
@@ -30,7 +31,7 @@ export class OtherIncomesPage {
   }
 
   getOtherIncome(id) {
-  	this.navCtrl.push(InvoicePage, {id: id});
+  	this.navCtrl.push(OtherIncomePage, {id: id});
   }
 
   get_other_incomes() {
@@ -53,8 +54,8 @@ export class OtherIncomesPage {
     this.reActiveInfinite = infiniteScroll;
     this.invoiceService.getOtherIncomes(this.page).subscribe(
       data => {
-        if (data.response.length > 0) {
-          for (let other_income of data.response) {
+        if (data.length > 0) {
+          for (let other_income of data) {
             this.otherIncomes.push(other_income);
           }
           infiniteScroll.complete();

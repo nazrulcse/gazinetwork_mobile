@@ -22,6 +22,7 @@ import { CreateInvoicePage } from '../pages/create-invoice/create-invoice';
 import { OtherIncomesPage } from '../pages/other-incomes/other-incomes';
 import { CreateExpensePage } from '../pages/create-expense/create-expense';
 import { ExpensesPage } from '../pages/expenses/expenses';
+import { OtherIncomePaymentsPage } from '../pages/other-income-payments/other-income-payments';
 
 @Component({
   templateUrl: 'app.html'
@@ -40,13 +41,14 @@ export class MyApp {
   agent_pages = [
     { title: 'Profile', component: ProfilePage, icon: 'contact' },
     { title: 'Customers', component: CustomersPage, icon: 'people' },
+    { title: 'Create Customer', component: CreateCustomerPage, icon: 'add-circle'},
     { title: 'Billings', component: InvoicesPage, icon: 'logo-usd' },
     { title: 'Payment', component: PaymentPage, icon: 'cash' },
+    { title: 'Other Income Payment', component: OtherIncomePaymentsPage, icon: 'logo-bitcoin' },
     { title: 'Expenses', component: ExpensesPage, icon: 'pricetag' },
-    { title: 'Create Expense', component: CreateExpensePage, icon: 'pricetag' },
-    { title: 'Create Customer', component: CreateCustomerPage, icon: 'people'},
+    { title: 'Create Expense', component: CreateExpensePage, icon: 'add-circle' },
     { title: 'Other Income Invoices', component: OtherIncomesPage, icon: 'logo-usd'},
-    { title: 'Create Other Income', component: CreateInvoicePage, icon: 'logo-usd'}
+    { title: 'Create Other Income', component: CreateInvoicePage, icon: 'add-circle'}
   ]
   loader: any;
   user = {name: 'Anonomys', id: 'Anonomys', type: ''};

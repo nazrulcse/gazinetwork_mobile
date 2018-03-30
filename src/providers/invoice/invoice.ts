@@ -24,7 +24,7 @@ export class InvoiceProvider {
   }
 
   getInvoice(id) {
-    return this.http.get(this.INVOICE_URL + '/invoices/' + id)
+    return this.http.get(this.INVOICE_V2_URL + '/invoices/' + id)
       .map(res => res.json().response);
   }
 

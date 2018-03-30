@@ -3,9 +3,9 @@ import { IonicPageModule } from 'ionic-angular';
 import { OtherIncomePage } from './other-income';
 
 @NgModule({
-  declarations: [
-    OtherIncomePage,
-  ],
+  // declarations: [
+  //   OtherIncomePage,
+  // ],
   imports: [
     IonicPageModule.forChild(OtherIncomePage),
   ],

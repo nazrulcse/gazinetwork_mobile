@@ -1,18 +1,84 @@
-<!--
-  Generated template for the OtherIncomePage page.
-
-  See http://ionicframework.com/docs/components/#navigation for more info on
-  Ionic pages and navigation.
--->
 <ion-header>
-
   <ion-navbar>
-    <ion-title>other-income</ion-title>
+    <ion-title> Other Income Invoice </ion-title>
   </ion-navbar>
-
 </ion-header>
 
 
 <ion-content padding>
+  <div *ngIf='error' class='alert alert-danger'> {{error}}</div>
+  <ion-grid>
+    <ion-row>
+      <ion-col col-4>
+        <b>ID</b>
+      </ion-col>
+      <ion-col col-8>: {{ invoice.invoice_id }}</ion-col>
+    </ion-row>
 
+    <ion-row>
+      <ion-col col-4>
+        <b>Title</b>
+      </ion-col>
+      <ion-col col-8>: {{ invoice.other_invoice_title }}</ion-col>
+    </ion-row>
+
+    <ion-row>
+      <ion-col col-4>
+        <b>Date</b>
+      </ion-col>
+      <ion-col col-8>: {{ invoice.date }} {{ invoice.month }}, {{ invoice.year }}</ion-col>
+    </ion-row>
+
+    <ion-row>
+      <ion-col col-4>
+        <b>Amount</b>
+      </ion-col>
+      <ion-col col-8>: {{ invoice.amount }}</ion-col>
+    </ion-row>
+
+    <ion-row>
+      <ion-col col-4>
+        <b>Paid</b>
+      </ion-col>
+      <ion-col col-8>: {{ invoice.paid }}</ion-col>
+    </ion-row>
+
+    <ion-row>
+      <ion-col col-4>
+        <b>Due</b>
+      </ion-col>
+      <ion-col col-8>: {{ invoice.due }}</ion-col>
+    </ion-row>
+
+  </ion-grid>
+  
+  <div class='payment-wrapper' *ngIf="invoice.due > 0">
+    <h4>Payment: </h4>
+      <div class='alert alert-success' *ngIf="bill_paid">
+        Bill Paid Successfully
+      </div>
+      <form #loginForm="ngForm" (ngSubmit)="makePayment(invoice.invoice_id)" autocomplete="off">
+        <ion-row>
+          <ion-col>
+              <div class='input-field'>
+                <input placeholder="Payment amount" name="payment" id="paymentField" class='common-input'
+                           type="number" required [(ngModel)]="payment.amount" #paymentField [disabled]="payment.full_paid">
+              </div>
+              <div class='fullpaid-field'>
+                <input type='checkbox' id='fullpaid' name='fullpaid' value='true' (change)='markFullPaid($event)' 
+                [(ngModel)]="payment.full_paid">
+                <label for='fullpaid'> Full Paid </label>
+              </div>
+          </ion-col>
+        </ion-row>
+        <ion-row>
+          <ion-col>
+            <div *ngIf="error" class="alert alert-danger">{{error}}</div>
+            <button ion-button class="submit-btn" full type="submit"
+                    [disabled]="!loginForm.form.valid && !bill_paid">Bill Collected
+            </button>
+          </ion-col>
+        </ion-row>
+      </form>
+    </div>
 </ion-content>

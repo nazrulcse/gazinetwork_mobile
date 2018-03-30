@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams, LoadingController } from 'ionic-angular';
 import { InvoiceProvider } from '../../providers/invoice/invoice';
 import { InvoicePage } from '../../pages/invoice/invoice';
+import { OtherIncomesPage } from '../other-incomes/other-incomes';
 
 /**
  * Generated class for the CreateInvoicePage page.
@@ -58,8 +59,8 @@ export class CreateInvoicePage {
              this.error = '';
              setTimeout(function() {
                console.log('success');
-              //  nav.setRoot(InvoicePage, {id: response.invoice_id});
-             }, 3000);
+               nav.setRoot(OtherIncomesPage, {id: response.invoice_id});
+             }, 1000);
            }
            else {
              this.success = '';
